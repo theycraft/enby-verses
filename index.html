@@ -20,44 +20,36 @@
             background-size: cover;
             background-position: center;
         }
-        header::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
-        }
-        .header-content {
+        header .header-content {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 600px;
-            background: #ffffff; /* White background */
-            text-align: center;
-            padding: 1rem;
-            border-radius: 8px; /* Subtle rounding */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            left: 0;
+            transform: translateY(-50%);
+            color: #2C2C2C; /* Dark gray text */
         }
-        .header-content h1 {
-            font-size: 2rem; /* Mobile-friendly size */
-            color: #2C2C2C; /* Dark gray */
+        header .title-block, 
+        header .tagline-block {
+            background-color: #FFFFFF; /* White background */
+            padding: 1rem 2rem;
             margin: 0 0 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 70%; /* Restrict width */
+            border-radius: 4px; /* Slight rounding for aesthetics */
         }
-        .header-content p {
-            font-size: 1rem; /* Smaller size for subheader */
-            color: #555; /* Lighter gray */
+        header .title-block h1 {
+            font-size: 2rem; /* Mobile-friendly size */
+            margin: 0;
+        }
+        header .tagline-block p {
+            font-size: 1rem; /* Subtle subheader size */
             margin: 0;
         }
         @media (min-width: 768px) {
-            .header-content h1 {
+            header .title-block h1 {
                 font-size: 3rem; /* Larger size for tablets/desktops */
             }
-            .header-content p {
-                font-size: 1.25rem; /* Slightly larger subheader */
+            header .tagline-block p {
+                font-size: 1.25rem; /* Larger tagline for bigger screens */
             }
         }
         main {
@@ -107,8 +99,12 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>Verses From a Self-Doubting Enby</h1>
-            <p>Writing Like Someone’s Reading—But Who Knows?</p>
+            <div class="title-block">
+                <h1>Verses From a Self-Doubting Enby</h1>
+            </div>
+            <div class="tagline-block">
+                <p>Writing Like Someone’s Reading—But Who Knows?</p>
+            </div>
         </div>
     </header>
     <main>
