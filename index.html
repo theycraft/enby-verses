@@ -27,24 +27,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text contrast */
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
         }
         .header-content {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background: #ffffff; /* White background */
             text-align: center;
-            color: #FFFFFF; /* White text */
-            z-index: 1;
+            padding: 1rem;
+            border-radius: 8px; /* Subtle rounding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
         .header-content h1 {
-            font-size: 3rem;
+            font-size: 2rem; /* Mobile-friendly size */
+            color: #2C2C2C; /* Dark gray */
             margin: 0 0 0.5rem;
         }
         .header-content p {
-            font-size: 1.25rem;
+            font-size: 1rem; /* Smaller size for subheader */
+            color: #555; /* Lighter gray */
             margin: 0;
+        }
+        @media (min-width: 768px) {
+            .header-content h1 {
+                font-size: 3rem; /* Larger size for tablets/desktops */
+            }
+            .header-content p {
+                font-size: 1.25rem; /* Slightly larger subheader */
+            }
         }
         main {
             max-width: 1200px;
