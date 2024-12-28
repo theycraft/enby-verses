@@ -53,14 +53,16 @@
             }
         }
         .welcome-section {
+            position: relative;
+            top: -50px; /* Pulls it up to overlap the banner */
             display: flex;
             align-items: flex-start;
-            padding: 2rem 1rem;
             gap: 1rem;
+            padding: 1.5rem;
             background-color: #FFFFFF; /* White background */
-            margin: 2rem auto; /* Space below banner */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             max-width: 800px;
+            margin: 0 auto; /* Center horizontally */
             border-radius: 8px;
         }
         .welcome-section img {
@@ -87,6 +89,7 @@
             .welcome-section {
                 flex-direction: column; /* Stack on mobile */
                 text-align: center; /* Center-align content */
+                top: -70px; /* Adjust overlap for smaller screens */
             }
             .welcome-section img {
                 margin-bottom: 1rem; /* Add space below headshot */
