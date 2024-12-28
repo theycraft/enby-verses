@@ -9,15 +9,16 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #1e1e1e;
+            color: #cfcfcf;
         }
 
         header {
-            background-color: #0078D7;
-            color: #fff;
+            background-color: #2d2d2d;
+            color: #ffffff;
             padding: 1rem;
             text-align: center;
+            border-bottom: 1px solid #444;
         }
 
         header h1 {
@@ -32,54 +33,47 @@
         }
 
         .blog-list {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
-        }
-
-        .blog-item:hover {
-            background-color: #f0f8ff;
-        }
-
-        .blog-item:last-child {
-            border-bottom: none;
-        }
-
-        .blog-icon {
-            margin-right: 1rem;
-            font-size: 1.5rem;
-            color: #0078D7;
-        }
-
-        .blog-content {
-            flex: 1;
-        }
-
-        .blog-content h2 {
-            font-size: 1.2rem;
-            margin: 0 0 0.5rem;
-            color: #0078D7;
-        }
-
-        .blog-content p {
+            width: 100%;
+            border-collapse: collapse;
             margin: 0;
-            font-size: 0.9rem;
-            color: #666;
         }
 
-        .blog-timestamp {
+        .blog-list th,
+        .blog-list td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .blog-list th {
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .blog-list tr {
+            background-color: #1e1e1e;
+        }
+
+        .blog-list tr:hover {
+            background-color: #333333;
+        }
+
+        .blog-list td {
+            font-size: 0.9rem;
+        }
+
+        .timestamp {
+            color: #888888;
             font-size: 0.8rem;
-            color: #999;
+        }
+
+        .subject {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .from {
+            color: #f4d03f;
         }
     </style>
 </head>
@@ -89,48 +83,42 @@
     </header>
 
     <div class="container">
-        <div class="blog-list">
-            <div class="blog-item">
-                <div class="blog-icon">📄</div>
-                <div class="blog-content">
-                    <h2>Tomboy</h2>
-                    <p>A poignant poem about identity, loss, and truth.</p>
-                    <span class="blog-timestamp">Dec 28, 2024</span>
-                </div>
-            </div>
-            <div class="blog-item">
-                <div class="blog-icon">📄</div>
-                <div class="blog-content">
-                    <h2>Reflection</h2>
-                    <p>Contemplating the face in the mirror and the soul beneath.</p>
-                    <span class="blog-timestamp">Dec 27, 2024</span>
-                </div>
-            </div>
-            <div class="blog-item">
-                <div class="blog-icon">📄</div>
-                <div class="blog-content">
-                    <h2>Wanderer</h2>
-                    <p>A journey through identity and belonging.</p>
-                    <span class="blog-timestamp">Dec 26, 2024</span>
-                </div>
-            </div>
-            <div class="blog-item">
-                <div class="blog-icon">📄</div>
-                <div class="blog-content">
-                    <h2>Stargazer</h2>
-                    <p>Finding hope and dreams in the night sky.</p>
-                    <span class="blog-timestamp">Dec 25, 2024</span>
-                </div>
-            </div>
-            <div class="blog-item">
-                <div class="blog-icon">📄</div>
-                <div class="blog-content">
-                    <h2>Whispers</h2>
-                    <p>Quiet moments of doubt and the strength to overcome them.</p>
-                    <span class="blog-timestamp">Dec 24, 2024</span>
-                </div>
-            </div>
-        </div>
+        <table class="blog-list">
+            <thead>
+                <tr>
+                    <th>Received</th>
+                    <th>From</th>
+                    <th>Subject</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="timestamp">22:46</td>
+                    <td class="from">Tomboy</td>
+                    <td class="subject">Explaining Kessler Syndrome</td>
+                </tr>
+                <tr>
+                    <td class="timestamp">20:21</td>
+                    <td class="from">Reflection</td>
+                    <td class="subject">Someone sent you a new message</td>
+                </tr>
+                <tr>
+                    <td class="timestamp">18:43</td>
+                    <td class="from">Wanderer</td>
+                    <td class="subject">Gear Up for Success - It’s Time to Flex Those Savings!</td>
+                </tr>
+                <tr>
+                    <td class="timestamp">Thu 17:22</td>
+                    <td class="from">Stargazer</td>
+                    <td class="subject">National Express confirmation email - do not reply</td>
+                </tr>
+                <tr>
+                    <td class="timestamp">Mon 19:22</td>
+                    <td class="from">Whispers</td>
+                    <td class="subject">Fwd: New NetEffect Signup</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
