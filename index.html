@@ -83,6 +83,18 @@
             color: #555; /* Subtle gray for readability */
             margin: 0;
         }
+        @media (max-width: 768px) {
+            .welcome-section {
+                flex-direction: column; /* Stack on mobile */
+                text-align: center; /* Center-align content */
+            }
+            .welcome-section img {
+                margin-bottom: 1rem; /* Add space below headshot */
+            }
+            .welcome-section-content {
+                text-align: left; /* Keep text left-aligned */
+            }
+        }
         main {
             max-width: 1200px;
             margin: 2rem auto;
