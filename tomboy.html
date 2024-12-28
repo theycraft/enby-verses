@@ -19,29 +19,29 @@
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: justify; /* Aligns text for better readability */
+            text-align: left; /* Ensures all text is left-justified */
         }
         .poem-container h1 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            text-align: center; /* Keep title centered */
+            text-align: left; /* Explicitly left-justified */
         }
         .poem-container .published-date {
             font-size: 0.9rem;
             color: #555;
             margin-bottom: 1.5rem;
-            text-align: center; /* Date aligned with title */
+            text-align: left; /* Explicitly left-justified */
         }
         .poem-container p {
             font-size: 1.1rem;
             line-height: 1.8;
             white-space: pre-wrap; /* Preserve poem's line breaks */
             margin-bottom: 1rem;
+            text-align: left; /* Explicitly left-justified */
         }
         @media (max-width: 768px) {
             .poem-container {
                 padding: 1.5rem;
-                text-align: justify; /* Maintain justification for smaller screens */
             }
             .poem-container h1 {
                 font-size: 1.8rem;
@@ -59,14 +59,11 @@
             color: #555;
         }
         .signature img {
-            width: 50px; /* Ensures circular shape */
-            height: 50px; /* Ensures circular shape */
-            border-radius: 50%; /* Makes the image a circle */
-            object-fit: cover; /* Maintains aspect ratio */
-            margin-right: 1rem; /* Space between image and text */
-        }
-        .signature span {
-            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Ensures the image is a perfect circle */
+            margin-right: 0.5rem;
+            object-fit: cover; /* Prevents stretching or squashing */
         }
         .back-link {
             display: inline-block;
