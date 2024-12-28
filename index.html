@@ -3,122 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Inbox</title>
+    <title>Typewriter Blog</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            background-color: #1e1e1e;
-            color: #cfcfcf;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         header {
             background-color: #2d2d2d;
-            color: #ffffff;
-            padding: 1rem;
+            color: #fff;
             text-align: center;
-            border-bottom: 1px solid #444;
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
+            font-size: 2.5rem;
             margin: 0;
-            font-size: 1.5rem;
+            letter-spacing: 0.1rem;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
+        header p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: #ccc;
+        }
+
+        .typewriter {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .typewriter::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
+        }
+
+        .typewriter h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .typewriter p {
+            font-size: 1rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: 2px solid #333;
+            display: inline-block;
+            animation: typing 3s steps(40, end), blink 0.5s step-end infinite alternate;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from { border-color: transparent; }
+            to { border-color: #333; }
         }
 
         .blog-list {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0;
+            list-style: none;
         }
 
-        .blog-list th,
-        .blog-list td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #444;
+        .blog-list li {
+            background: #fff;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
         }
 
-        .blog-list th {
-            background-color: #2d2d2d;
-            color: #ffffff;
+        .blog-list li:hover {
+            transform: translateY(-5px);
         }
 
-        .blog-list tr {
-            background-color: #1e1e1e;
+        .blog-list a {
+            text-decoration: none;
+            color: #2d2d2d;
         }
 
-        .blog-list tr:hover {
-            background-color: #333333;
+        .blog-list h3 {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
         }
 
-        .blog-list td {
+        .blog-list p {
             font-size: 0.9rem;
-        }
-
-        .timestamp {
-            color: #888888;
-            font-size: 0.8rem;
-        }
-
-        .subject {
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        .from {
-            color: #f4d03f;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Blog Inbox</h1>
+        <h1>Typewriter Blog</h1>
+        <p>Where words come to life, one keystroke at a time.</p>
     </header>
 
-    <div class="container">
-        <table class="blog-list">
-            <thead>
-                <tr>
-                    <th>Received</th>
-                    <th>From</th>
-                    <th>Subject</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="timestamp">22:46</td>
-                    <td class="from">Tomboy</td>
-                    <td class="subject">Explaining Kessler Syndrome</td>
-                </tr>
-                <tr>
-                    <td class="timestamp">20:21</td>
-                    <td class="from">Reflection</td>
-                    <td class="subject">Someone sent you a new message</td>
-                </tr>
-                <tr>
-                    <td class="timestamp">18:43</td>
-                    <td class="from">Wanderer</td>
-                    <td class="subject">Gear Up for Success - It’s Time to Flex Those Savings!</td>
-                </tr>
-                <tr>
-                    <td class="timestamp">Thu 17:22</td>
-                    <td class="from">Stargazer</td>
-                    <td class="subject">National Express confirmation email - do not reply</td>
-                </tr>
-                <tr>
-                    <td class="timestamp">Mon 19:22</td>
-                    <td class="from">Whispers</td>
-                    <td class="subject">Fwd: New NetEffect Signup</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="typewriter">
+        <h2>Welcome</h2>
+        <p>"A place where ideas flow freely, with the comforting clack of a typewriter in the background. Dive into musings, poetry, and stories that make you pause and reflect."</p>
     </div>
+
+    <ul class="blog-list">
+        <li>
+            <a href="tomboy.html">
+                <h3>Tomboy</h3>
+                <p>A poignant poem about identity, loss, and truth.</p>
+            </a>
+        </li>
+        <li>
+            <a href="reflection.html">
+                <h3>Reflection</h3>
+                <p>Contemplating the face in the mirror and the soul beneath.</p>
+            </a>
+        </li>
+        <li>
+            <a href="wanderer.html">
+                <h3>Wanderer</h3>
+                <p>A journey through identity and belonging.</p>
+            </a>
+        </li>
+        <li>
+            <a href="stargazer.html">
+                <h3>Stargazer</h3>
+                <p>Finding hope and dreams in the night sky.</p>
+            </a>
+        </li>
+        <li>
+            <a href="whispers.html">
+                <h3>Whispers</h3>
+                <p>Quiet moments of doubt and the strength to overcome them.</p>
+            </a>
+        </li>
+    </ul>
 </body>
 </html>
