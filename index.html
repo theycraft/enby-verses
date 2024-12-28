@@ -29,15 +29,21 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text contrast */
         }
-        header h1 {
+        .header-content {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: #FFFFFF; /* White text */
-            font-size: 3rem;
             text-align: center;
+            color: #FFFFFF; /* White text */
             z-index: 1;
+        }
+        .header-content h1 {
+            font-size: 3rem;
+            margin: 0 0 0.5rem;
+        }
+        .header-content p {
+            font-size: 1.25rem;
             margin: 0;
         }
         main {
@@ -86,7 +92,10 @@
 </head>
 <body>
     <header>
-        <h1>Verses From a Self-Doubting Enby</h1>
+        <div class="header-content">
+            <h1>Verses From a Self-Doubting Enby</h1>
+            <p>Writing Like Someone’s Reading—But Who Knows?</p>
+        </div>
     </header>
     <main>
         <h2 style="text-align: center; margin-bottom: 1.5rem;">Poems Gallery</h2>
