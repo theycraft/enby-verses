@@ -25,9 +25,23 @@
             top: 50%;
             left: 0;
             transform: translateY(-50%);
-            color: #2C2C2C; /* Dark gray text */
+            color: #2C2C2C; /* Default color */
         }
-        header .title-block, 
+        header .title-block {
+            padding: 1rem 2rem;
+            margin-bottom: 0.5rem;
+            max-width: 70%; /* Restrict width */
+        }
+        header .title-block h1 {
+            font-size: 2rem; /* Mobile-friendly size */
+            margin: 0;
+            color: transparent; /* Makes text see-through */
+            background: url('https://i.postimg.cc/MGLd6wR7/IMG-4576.jpg'); /* Same banner image */
+            background-clip: text;
+            -webkit-background-clip: text; /* Required for Safari */
+            -webkit-text-fill-color: transparent; /* Required for Safari */
+            text-fill-color: transparent; /* For modern browsers */
+        }
         header .tagline-block {
             background-color: #FFFFFF; /* White background */
             padding: 1rem 2rem;
@@ -35,10 +49,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             max-width: 70%; /* Restrict width */
             border-radius: 4px; /* Slight rounding for aesthetics */
-        }
-        header .title-block h1 {
-            font-size: 2rem; /* Mobile-friendly size */
-            margin: 0;
         }
         header .tagline-block p {
             font-size: 1rem; /* Subtle subheader size */
