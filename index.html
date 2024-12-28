@@ -39,6 +39,7 @@
             padding: 2rem;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
+            position: relative;
         }
 
         .carousel::-webkit-scrollbar {
@@ -53,6 +54,8 @@
             scroll-snap-align: center;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0.5;
         }
 
         .card img {
@@ -76,6 +79,11 @@
             color: #aaaaaa;
         }
 
+        .card.active {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -92,7 +100,38 @@
         a:hover {
             text-decoration: underline;
         }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.card');
+
+            carousel.addEventListener('scroll', () => {
+                cards.forEach((card) => {
+                    const rect = card.getBoundingClientRect();
+                    const carouselRect = carousel.getBoundingClientRect();
+                    const center = carouselRect.width / 2 + carouselRect.left;
+                    const distance = Math.abs(center - (rect.left + rect.width / 2));
+                    const maxDistance = carouselRect.width / 2;
+
+                    if (distance < maxDistance) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -102,7 +141,7 @@
 
     <main>
         <div class="carousel">
-            <div class="card">
+            <div class="card active">
                 <a href="tomboy.html">
                     <img src="https://via.placeholder.com/300x200.png?text=Tomboy" alt="Tomboy">
                 </a>
