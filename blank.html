@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- Title goes here --></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2C2C2C;
+            background-color: #F5F5F5;
+        }
+        .poem-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .poem-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+        .poem-container .published-date {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .poem-container p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: left;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+        .signature {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: #555;
+        }
+        .signature img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #2C2C2C;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #2C2C2C;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #2C2C2C;
+            color: #FFFFFF;
+        }
+        @media (max-width: 768px) {
+            .poem-container {
+                padding: 15px;
+            }
+            .poem-container h1 {
+                font-size: 2rem;
+            }
+            .poem-container p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poem-container">
+        <h1><!-- Poem Title goes here --></h1>
+        <div class="published-date">Published: <!-- Published Date goes here --></div>
+        <p>
+            <!-- Write the entire poem here as one block of text. Use line breaks <br> for stanza breaks if necessary. Example: -->
+            Roses are red,<br>
+            Violets are blue,<br>
+            Sugar is sweet,<br>
+            And so are you.<br>
+        </p>
+        <div class="signature">
+            <img src="<!-- Signature image URL goes here -->" alt="Author's headshot">
+            <span><!-- Author's name goes here --></span>
+        </div>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>
