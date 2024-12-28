@@ -19,7 +19,7 @@
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: left; /* Ensure all text is left-justified */
+            text-align: left; /* Left justification for all text */
         }
         .poem-container h1 {
             font-size: 2rem;
@@ -32,21 +32,9 @@
         }
         .poem-container p {
             font-size: 1.1rem;
-            line-height: 1.5; /* Reduced line height for tighter spacing */
-            white-space: pre-wrap; /* Preserve poem's line breaks */
-            margin-bottom: 0.8rem; /* Reduced margin between paragraphs */
-        }
-        @media (max-width: 768px) {
-            .poem-container {
-                padding: 1.5rem;
-            }
-            .poem-container h1 {
-                font-size: 1.8rem;
-            }
-            .poem-container p {
-                font-size: 1rem;
-                line-height: 1.4; /* Tighter spacing on mobile */
-            }
+            line-height: 1.6; /* Moderate line spacing */
+            white-space: pre-wrap; /* Preserve line breaks */
+            margin-bottom: 1rem; /* Consistent spacing between stanzas */
         }
         .signature {
             display: flex;
@@ -58,9 +46,9 @@
         .signature img {
             width: 40px;
             height: 40px;
-            border-radius: 50%; /* Ensures the image is a perfect circle */
+            border-radius: 50%;
             margin-right: 0.5rem;
-            object-fit: cover; /* Prevents stretching or squashing */
+            object-fit: cover; /* Ensure circular headshot remains proportional */
         }
         .back-link {
             display: inline-block;
@@ -77,43 +65,54 @@
             background-color: #2C2C2C;
             color: #FFFFFF;
         }
+        @media (max-width: 768px) {
+            .poem-container {
+                padding: 1.5rem;
+            }
+            .poem-container h1 {
+                font-size: 1.8rem;
+            }
+            .poem-container p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="poem-container">
         <h1>Tomboy</h1>
         <div class="published-date">Published: 10th October 2024</div>
-        <p>
-            I remember a girl from my childhood, Tanya.
-            New to our school, an unfamiliar face,
-            A tomboy with cropped hair and skinned knees,
-            Always daring, always bold.
+        <p>I remember a girl from my childhood, Tanya.<br>
+        New to our school, an unfamiliar face,<br>
+        A tomboy with cropped hair and skinned knees,<br>
+        Always daring, always bold.</p>
 
-            She'd say she was a boy, but we were too young,
-            Too bound by norms to see the truth beyond the words.
-            Tanya, a tomboy they called her,
-            But maybe Tanya wasn't Tanya.
+        <p>She'd say she was a boy, but we were too young,<br>
+        Too bound by norms to see the truth beyond the words.<br>
+        Tanya, a tomboy they called her,<br>
+        But maybe Tanya wasn't Tanya.</p>
 
-            Years passed, and we drifted apart,
-            Separate paths, losing touch.
-            She fell into the shadow—drugs, they said,
-            The solace of the lost.
+        <p>Years passed, and we drifted apart,<br>
+        Separate paths, losing touch.<br>
+        She fell into the shadow—drugs, they said,<br>
+        The solace of the lost.</p>
 
-            And then the final blow—overdose, gone.
-            A life snuffed out, potential unfulfilled.
-            Looking back, I wonder,
-            Was Tanya really Tanya? Was she always him,
-            A boy trapped, unseen, unheard?
+        <p>And then the final blow—overdose, gone.<br>
+        A life snuffed out, potential unfulfilled.<br>
+        Looking back, I wonder,<br>
+        Was Tanya really Tanya? Was she always him,<br>
+        A boy trapped, unseen, unheard?</p>
 
-            I mourn for him now, for the life he could have had,
-            If only we had seen, if only we had heard.
-            Tanya, not a tomboy, but a boy named...
+        <p>I mourn for him now, for the life he could have had,<br>
+        If only we had seen, if only we had heard.<br>
+        Tanya, not a tomboy, but a boy named...</p>
 
-            I mourn the loss of a friend,
-            The truth hidden beneath labels,
-            A boy who was always there,
-            A boy who could have thrived.
-        </p>
+        <p>I mourn the loss of a friend,<br>
+        The truth hidden beneath labels,<br>
+        A boy who was always there,<br>
+        A boy who could have thrived.</p>
+
         <div class="signature">
             <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Jayden C's headshot">
             <span>Jayden C</span>
