@@ -26,16 +26,43 @@
             margin: 0.5rem 0 0;
         }
         main {
-            background-color: #FFFFFF; /* White */
-            color: #2C2C2C; /* Black */
-            max-width: 800px;
+            max-width: 1200px;
             margin: 2rem auto;
-            padding: 2rem;
+            padding: 1rem;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background-color: #FFFFFF; /* White */
+            color: #2C2C2C; /* Black text */
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
         }
-        main h2 {
-            color: #9C59D1; /* Purple for headings */
+        .card h2 {
+            color: #9C59D1; /* Purple heading */
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .card a {
+            text-decoration: none;
+            color: #FCF434; /* Yellow link */
+            font-weight: bold;
+            background-color: #2C2C2C; /* Black button */
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        .card a:hover {
+            background-color: #9C59D1; /* Purple hover */
+            color: #FFFFFF; /* White text */
         }
         footer {
             background-color: #2C2C2C; /* Black */
@@ -44,33 +71,35 @@
             padding: 1rem;
             margin-top: 2rem;
         }
-        a {
-            color: #9C59D1; /* Purple links */
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>Verses From a Self-Doubting Enby</h1>
-        <p>Embracing identity, self-expression, and growth</p>
+        <p>A gallery of poems and reflections</p>
     </header>
     <main>
-        <h2>Welcome</h2>
-        <p>
-            This is a space where poetry, reflections, and stories come together to explore the complexities of identity and self-doubt. 
-            As an enby (non-binary) creator, I share this journey with you to find connection, strength, and understanding.
-        </p>
-        <h2>Recent Poems</h2>
-        <ul>
-            <li><a href="#poem1">Poem Title 1</a></li>
-            <li><a href="#poem2">Poem Title 2</a></li>
-            <li><a href="#poem3">Poem Title 3</a></li>
-        </ul>
+        <div class="gallery">
+            <!-- Card 1 -->
+            <div class="card">
+                <h2>Poem Title 1</h2>
+                <p>A short preview of the poem goes here...</p>
+                <a href="poem1.html">Read More</a>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <h2>Poem Title 2</h2>
+                <p>A short preview of the poem goes here...</p>
+                <a href="poem2.html">Read More</a>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <h2>Poem Title 3</h2>
+                <p>A short preview of the poem goes here...</p>
+                <a href="poem3.html">Read More</a>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
     </main>
     <footer>
         <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
