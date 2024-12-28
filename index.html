@@ -67,11 +67,12 @@
         .typewriter p {
             font-size: 1rem;
             line-height: 1.8;
-            white-space: pre-wrap;
+            white-space: nowrap;
             overflow: hidden;
             border-right: 2px solid #333;
             display: inline-block;
-            animation: typing 3s steps(40, end), blink 0.5s step-end infinite alternate;
+            width: 0;
+            animation: typing 4s steps(50, end), blink 0.5s step-end infinite alternate;
         }
 
         @keyframes typing {
