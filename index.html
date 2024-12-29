@@ -23,10 +23,11 @@
         header .header-content {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+            left: 0;
+            transform: translateY(-50%);
             color: #2C2C2C;
+            padding: 0 1rem;
+            text-align: left; /* Left-justified for all screens */
         }
         header .title-block,
         header .tagline-block {
@@ -65,6 +66,7 @@
             max-width: 800px;
             margin: -50px auto 0 auto;
             border-radius: 8px;
+            text-align: left; /* Default left-aligned */
         }
         .welcome-section img {
             width: 120px;
@@ -89,13 +91,11 @@
         @media (max-width: 768px) {
             .welcome-section {
                 flex-direction: column;
-                text-align: center;
+                align-items: flex-start; /* Align content to the left */
+                text-align: left; /* Override any centering */
             }
             .welcome-section img {
                 margin-bottom: 1rem;
-            }
-            .welcome-section-content {
-                text-align: left;
             }
         }
         .gallery {
