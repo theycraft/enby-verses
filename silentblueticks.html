@@ -82,10 +82,9 @@
 <body>
     <div class="poem-container">
         <h1>Silent Blue Ticks</h1>
-        <div class="published-date">
-            Published: <span id="published-date"></span>
-        </div>
-        <p>I’m the ghost in your phone,<br>
+        <div class="published-date">Published: October 24th 2024</div>
+        <p>
+            <p>I’m the ghost in your phone,<br>
 Not the spooky kind,<br>
 More like the “I meant to text back, I swear” kind.<br>
 I see the message, think of the perfect reply,<br>
@@ -122,21 +121,12 @@ Sorry about that.<br>
 Maybe I’ll respond tomorrow.<br>
 Or maybe not.</p>
 
+        </p>
         <div class="signature">
             <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Jayden C's headshot">
             <span>Jayden C</span>
         </div>
         <a href="index.html" class="back-link">← Back to Home</a>
     </div>
-    <script>
-        // JavaScript to dynamically set the published date
-        const publishedDate = new Date();
-        const formattedDate = publishedDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-        document.getElementById('published-date').textContent = formattedDate;
-    </script>
 </body>
 </html>
