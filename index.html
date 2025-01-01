@@ -66,7 +66,7 @@
             display: none; /* Initially hidden for mobile */
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             padding: 1.5rem;
             background-color: #FC92E9; /* Welcome section background */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -89,56 +89,28 @@
             }
         }
         .welcome-section img {
-            width: 120px; /* Set both width and height equally */
-            height: 120px; /* Ensure it’s square */
-            border-radius: 50%; /* Make it circular */
+            width: 120px; /* Equal width */
+            height: 120px; /* Equal height */
+            border-radius: 50%; /* Keeps the image circular */
+            object-fit: cover; /* Ensures the image does not distort */
             border: 3px solid #F5F5F5; /* Add border for aesthetics */
-            display: block; /* Prevent inline spacing issues */
-            object-fit: cover; /* Crop the image within the circle */
-            margin: 0 auto; /* Center it properly */
-        }
-        .welcome-section-content {
-            text-align: center;
-        }
-        .welcome-section-content h2 {
-            font-size: 2rem;
-            margin: 0 0 0.5rem;
-        }
-        .welcome-section-content p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #555;
-            margin: 0;
-        }
-        .toggle-btn {
-            display: block;
-            margin: 2rem auto;
-            background-color: #FC92E9;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .toggle-btn:hover {
-            background-color: #f073c3;
+            display: block; /* Prevents inline spacing issues */
+            margin: 0; /* Remove unnecessary margins */
         }
         @media (min-width: 768px) {
             .welcome-section {
-                display: flex; /* Always visible on desktop */
+                display: flex; /* Flex layout for desktop */
                 flex-direction: row; /* Align image and text side-by-side */
-                align-items: center;
+                align-items: center; /* Center items vertically */
+                gap: 1.5rem; /* Space between the image and text */
+                max-width: 800px;
+                margin: 2rem auto; /* Center the section */
             }
             .welcome-section img {
-                margin-right: 1.5rem; /* Space between image and text */
+                margin: 0; /* Remove extra spacing issues */
             }
             .welcome-section-content {
                 text-align: left; /* Align text to the left */
-            }
-            .toggle-btn {
-                display: none; /* Hide button on desktop */
             }
         }
         .poem-list {
