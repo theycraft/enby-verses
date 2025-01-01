@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verses From a Self-Doubting Enby</title>
@@ -126,6 +127,14 @@
         @media (min-width: 768px) {
             .welcome-section {
                 display: flex; /* Always visible on desktop */
+                flex-direction: row; /* Align image and text side-by-side */
+                align-items: center;
+            }
+            .welcome-section img {
+                margin-right: 1.5rem; /* Add space between image and text */
+            }
+            .welcome-section-content {
+                text-align: left; /* Align text to the left */
             }
             .toggle-btn {
                 display: none; /* Hide button on desktop */
