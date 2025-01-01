@@ -75,11 +75,13 @@
             border-radius: 8px;
         }
         .welcome-section img {
-            width: 120px; /* Set both width and height equally */
-            height: 120px; /* Ensure it’s square */
-            border-radius: 50%; /* Make it circular */
-            border: 3px solid #F5F5F5; /* Add border for aesthetics */
-            object-fit: cover; /* Crop the image within the circle */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #F5F5F5;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
         }
         .welcome-section-content {
             text-align: center;
@@ -96,14 +98,15 @@
         }
         @media (min-width: 768px) {
             .welcome-section {
-                flex-direction: row; /* Align image and text side-by-side */
+                flex-direction: row;
                 align-items: center;
             }
             .welcome-section img {
-                margin-right: 1.5rem; /* Space between image and text */
+                flex-shrink: 0;
+                margin-right: 1.5rem;
             }
             .welcome-section-content {
-                text-align: left; /* Align text to the left */
+                text-align: left;
             }
         }
         .poem-list {
