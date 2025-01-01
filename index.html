@@ -63,7 +63,7 @@
         .welcome-section {
             position: relative;
             z-index: 10;
-            display: none; /* Initially hidden for mobile */
+            display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
@@ -73,20 +73,6 @@
             max-width: 800px;
             margin: 2rem auto; /* Centered */
             border-radius: 8px;
-        }
-        .welcome-section.open {
-            display: flex; /* Show welcome section on mobile toggle */
-            animation: slideDown 0.3s ease;
-        }
-        @keyframes slideDown {
-            from {
-                transform: translateY(-10%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
         .welcome-section img {
             width: 120px; /* Set both width and height equally */
@@ -110,24 +96,8 @@
             color: #555;
             margin: 0;
         }
-        .toggle-btn {
-            display: block;
-            margin: 2rem auto;
-            background-color: #FC92E9;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .toggle-btn:hover {
-            background-color: #f073c3;
-        }
         @media (min-width: 768px) {
             .welcome-section {
-                display: flex; /* Always visible on desktop */
                 flex-direction: row; /* Align image and text side-by-side */
                 align-items: center;
             }
@@ -136,9 +106,6 @@
             }
             .welcome-section-content {
                 text-align: left; /* Align text to the left */
-            }
-            .toggle-btn {
-                display: none; /* Hide button on desktop */
             }
         }
         .poem-list {
@@ -185,7 +152,6 @@
             </div>
         </div>
     </header>
-    <button class="toggle-btn" onclick="toggleWelcome()">Show Welcome</button>
     <section class="welcome-section" id="welcomeBox">
         <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Headshot">
         <div class="welcome-section-content">
@@ -210,11 +176,5 @@
     <footer>
         <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
     </footer>
-    <script>
-        function toggleWelcome() {
-            const welcomeBox = document.getElementById("welcomeBox");
-            welcomeBox.classList.toggle("open");
-        }
-    </script>
 </body>
 </html>
