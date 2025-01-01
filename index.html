@@ -63,7 +63,7 @@
         .welcome-section {
             position: relative;
             z-index: 10;
-            display: none; /* Initially hidden for all devices */
+            display: none; /* Initially hidden for mobile */
             flex-direction: column;
             align-items: center;
             gap: 1rem;
@@ -71,11 +71,11 @@
             background-color: #FC92E9; /* Welcome section background */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            margin: 0 auto; /* Keep central position */
+            margin: 2rem auto; /* Centered */
             border-radius: 8px;
         }
         .welcome-section.open {
-            display: flex; /* Show welcome section when open */
+            display: flex; /* Show welcome section on mobile toggle */
             animation: slideDown 0.3s ease;
         }
         @keyframes slideDown {
@@ -124,9 +124,11 @@
             background-color: #f073c3;
         }
         @media (min-width: 768px) {
-            .toggle-btn,
             .welcome-section {
-                display: none; /* Hide button and section on desktop */
+                display: flex; /* Always visible on desktop */
+            }
+            .toggle-btn {
+                display: none; /* Hide button on desktop */
             }
         }
         .poem-list {
