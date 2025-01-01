@@ -124,6 +124,11 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        .poem-list h2 {
+            font-size: 1.75rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
         .poem-list ul {
             list-style: none;
             padding: 1rem 0;
@@ -133,12 +138,19 @@
             margin-bottom: 1rem;
         }
         .poem-list a {
+            display: inline-block;
             text-decoration: none;
             color: #2C2C2C;
             font-size: 1.25rem;
+            padding: 0.5rem 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #2C2C2C;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .poem-list a:hover {
-            text-decoration: underline;
+            background-color: #FFD700; /* Highlight color */
+            color: #000000;
         }
         footer {
             text-align: center;
@@ -173,6 +185,7 @@
     </section>
     <main>
         <div class="poem-list">
+            <h2>Poems</h2>
             <ul>
                 <li><a href="silentblueticks.html">Silent Blue Ticks</a></li>
                 <li><a href="punctuationmatters.html">Punctuation Matters</a></li>
