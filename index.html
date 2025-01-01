@@ -1,44 +1,166 @@
-<style>
-    .welcome-section {
-        display: flex;
-        align-items: center; /* Vertically centers the image and text */
-        gap: 1rem;
-        padding: 1.5rem;
-        background-color: #FFFFFF;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-        margin: -50px auto 0 auto;
-        border-radius: 8px;
-    }
-    .welcome-section img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid #F5F5F5;
-    }
-    .welcome-section-content {
-        flex: 1; /* Allows the text to take remaining space */
-    }
-    .welcome-section-content h2 {
-        font-size: 2rem;
-        margin: 0 0 0.5rem;
-    }
-    .welcome-section-content p {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #555;
-        margin: 0;
-    }
-    @media (max-width: 768px) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verses From a Self-Doubting Enby</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2C2C2C;
+            background-color: #F5F5F5;
+        }
+        header {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/MGLd6wR7/IMG-4576.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        header .header-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #2C2C2C;
+            padding: 0 1rem;
+        }
+        header .title-block,
+        header .tagline-block {
+            background-color: #FFFFFF;
+            padding: 1rem 2rem;
+            margin: 0 0 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 70%;
+            border-radius: 4px;
+        }
+        header .title-block h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        header .tagline-block p {
+            font-size: 1rem;
+            margin: 0;
+        }
+        @media (min-width: 768px) {
+            header .title-block h1 {
+                font-size: 3rem;
+            }
+            header .tagline-block p {
+                font-size: 1.25rem;
+            }
+        }
         .welcome-section {
-            flex-direction: column; /* Stacks the image and text vertically */
-            align-items: flex-start; /* Aligns content to the left */
-            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: -50px auto 0 auto;
+            border-radius: 8px;
         }
         .welcome-section img {
-            margin-bottom: 1rem; /* Adds spacing below the image */
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #F5F5F5;
         }
-    }
-</style>
-
+        .welcome-section-content {
+            flex: 1;
+        }
+        .welcome-section-content h2 {
+            font-size: 2rem;
+            margin: 0 0 0.5rem;
+        }
+        .welcome-section-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .welcome-section {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            .welcome-section img {
+                margin-bottom: 1rem;
+            }
+        }
+        .poem-list {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .poem-list ul {
+            list-style: none;
+            padding: 1rem 0;
+            margin: 0;
+        }
+        .poem-list li {
+            margin-bottom: 1rem;
+        }
+        .poem-list a {
+            text-decoration: none;
+            color: #2C2C2C;
+            font-size: 1.25rem;
+        }
+        .poem-list a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #2C2C2C;
+            color: #FFFFFF;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="title-block">
+                <h1>Verses From a Self-Doubting Enby</h1>
+            </div>
+            <div class="tagline-block">
+                <p>Writing Like Someone’s Reading—But Who Knows?</p>
+            </div>
+        </div>
+    </header>
+    <section class="welcome-section">
+        <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Headshot">
+        <div class="welcome-section-content">
+            <h2>Welcome</h2>
+            <p>
+                Welcome to Verses from a Self-Doubting Enby, a space where I share my thoughts in poetry form; 
+                sometimes serious, sometimes light-hearted, but always real. My poems explore everything from 
+                the complexities of identity to the random quirks of life that make you smile, with a few self-doubts thrown in for good measure.
+            </p>
+        </div>
+    </section>
+    <main>
+        <div class="poem-list">
+            <ul>
+                <li><a href="silentblueticks.html">Silent Blue Ticks</a></li>
+                <li><a href="punctuationmatters.html">Punctuation Matters</a></li>
+                <li><a href="notjustaquirk.html">Not Just a Quirk</a></li>
+                <li><a href="tomboy.html">Tomboy</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
+    </footer>
+</body>
+</html>
