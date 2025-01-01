@@ -20,6 +20,14 @@
             background-position: center;
             background-attachment: fixed;
         }
+
+        @media (max-width: 767px) {
+            body {
+                background-size: contain; /* Ensures the image fits within the viewport */
+                background-repeat: no-repeat; /* Prevents repeating the image */
+            }
+        }
+
         header {
             position: relative;
             width: 100%;
@@ -201,7 +209,5 @@
         </div>
     </main>
     <footer>
-        <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
-    </footer>
 </body>
 </html>
