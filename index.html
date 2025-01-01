@@ -6,83 +6,120 @@
     <title>Verses From a Self-Doubting Enby</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #2C2C2C;
-            background-color: #FAFAFA;
-            text-align: center;
+            background-color: #F5F5F5; /* Light background */
         }
-
         header {
-            padding: 2rem;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/MGLd6wR7/IMG-4576.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        header .header-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #2C2C2C;
+            padding: 0 1rem;
+            text-align: left; /* Left-justified for all screens */
+        }
+        header .title-block,
+        header .tagline-block {
+            background-color: #FFFFFF; /* White background */
+            padding: 1rem 2rem;
+            margin: 0 0 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 70%; /* Restrict width */
+            border-radius: 4px; /* Slight rounding for aesthetics */
+        }
+        header .title-block h1 {
+            font-size: 2rem; /* Mobile-friendly size */
+            margin: 0;
+        }
+        header .tagline-block p {
+            font-size: 1rem; /* Subtle subheader size */
+            margin: 0;
+        }
+        @media (min-width: 768px) {
+            header .title-block h1 {
+                font-size: 3rem; /* Larger size for desktops */
+            }
+            header .tagline-block p {
+                font-size: 1.25rem; /* Larger tagline */
+            }
+        }
+        .welcome-section {
+            position: relative;
+            margin-top: -50px; /* Adjust instead of top property */
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
             background-color: #FFFFFF;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: -50px auto 0 auto;
+            border-radius: 8px;
+            text-align: left; /* Default left-aligned */
         }
-
-        header h1 {
-            font-size: 2rem;
-            color: #333333;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1rem;
-            color: #666666;
-            margin-top: 0;
-        }
-
-        .icon-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .icon-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #E0E0E0;
+        .welcome-section img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
+            border: 3px solid #F5F5F5;
         }
-
-        .icon-links img {
-            width: 20px;
-            height: 20px;
+        .welcome-section-content {
+            flex: 1;
         }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+        .welcome-section-content h2 {
+            font-size: 2rem;
+            margin: 0 0 0.5rem;
+        }
+        .welcome-section-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555; /* Subtle gray */
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .welcome-section {
+                flex-direction: column;
+                align-items: flex-start; /* Align content to the left */
+                text-align: left; /* Override any centering */
+            }
+            .welcome-section img {
+                margin-bottom: 1rem;
+            }
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 1.5rem;
+            justify-content: center; /* Centers the grid in the container */
             padding: 2rem;
         }
-
-        .button-container a {
-            display: block;
-            width: 90%;
-            max-width: 300px;
-            padding: 1rem;
-            text-decoration: none;
-            color: #FFFFFF;
-            background-color: #FFC107;
-            border-radius: 25px;
-            text-align: center;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .card {
+            width: 100%; /* Make cards responsive */
+            height: 200px; /* Fixed height */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .button-container a:hover {
-            background-color: #FFA000;
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fits perfectly */
+            border-radius: 8px; /* Adds rounded corners to the image */
         }
-
         footer {
+            text-align: center;
             padding: 1rem;
             background-color: #2C2C2C;
             color: #FFFFFF;
@@ -92,26 +129,52 @@
 </head>
 <body>
     <header>
-        <h1>Hi, I'm Molly</h1>
-        <p>Sharing my verses and musings, one line at a time.</p>
-        <div class="icon-links">
-            <a href="#"><img src="icon-tiktok.png" alt="TikTok"></a>
-            <a href="#"><img src="icon-instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="icon-twitter.png" alt="Twitter"></a>
-            <a href="#"><img src="icon-linkedin.png" alt="LinkedIn"></a>
-            <a href="#"><img src="icon-phone.png" alt="Phone"></a>
+        <div class="header-content">
+            <div class="title-block">
+                <h1>Verses From a Self-Doubting Enby</h1>
+            </div>
+            <div class="tagline-block">
+                <p>Writing Like Someone’s Reading—But Who Knows?</p>
+            </div>
         </div>
     </header>
-
-    <div class="button-container">
-        <a href="#">Semper Feugiat</a>
-        <a href="#">Pulvinar Amet Etiam</a>
-        <a href="#">Tincidunt Eget</a>
-        <a href="#">Pretium Nibh Lorem</a>
-    </div>
-
+    <section class="welcome-section">
+        <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Headshot">
+        <div class="welcome-section-content">
+            <h2>Welcome</h2>
+            <p>
+                Welcome to Verses from a Self-Doubting Enby, a space where I share my thoughts in poetry form; 
+                sometimes serious, sometimes light-hearted, but always real. My poems explore everything from 
+                the complexities of identity to the random quirks of life that make you smile, with a few self-doubts thrown in for good measure.
+            </p>
+        </div>
+    </section>
+    <main>
+        <div class="gallery">
+            <div class="card">
+                <a href="silentblueticks.html">
+                    <img src="https://i.postimg.cc/PrtRpHQc/silentblueticks.png" alt="Silent Blue Ticks">
+                </a>
+            </div>
+            <div class="card">
+                <a href="punctuationmatters.html">
+                    <img src="https://i.postimg.cc/Qtk66YqV/punctuationmatters.png" alt="Punctuation Matters">
+                </a>
+            </div>
+            <div class="card">
+                <a href="notjustaquirk.html">
+                    <img src="https://i.postimg.cc/tCrcQfGx/notjustaquirk.png" alt="Not Just a Quirk">
+                </a>
+            </div>
+            <div class="card">
+                <a href="tomboy.html">
+                    <img src="https://i.postimg.cc/6QQ56F8x/tomboy.png" alt="Tomboy">
+                </a>
+            </div>
+        </div>
+    </main>
     <footer>
-        <p>© 2024 Verses From a Self-Doubting Enby</p>
+        <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
     </footer>
 </body>
 </html>
