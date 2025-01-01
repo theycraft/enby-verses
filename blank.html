@@ -22,6 +22,20 @@
             text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
         }
 
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #2C2C2C;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         .poem-container {
             max-width: 800px;
             margin: 2rem auto;
@@ -73,6 +87,15 @@
             color: #2C2C2C;
         }
 
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #2C2C2C;
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+
         @media (max-width: 767px) {
             .poem-container {
                 padding: 1rem;
@@ -90,24 +113,25 @@
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-button">Home</a>
     <div class="poem-container">
         <h1 class="poem-title">[Poem Title]</h1>
         <p class="poem-date">Published on [Date]</p>
         <div class="poem-body">
-            <p>Poem Line 1<br>  
-Poem Line 2<br><br>
-
-Poem Line 3<br>
-Poem Line 4<br>
-
-
-
-            </p>
+            <p>Line 1 <br> 
+Line 2 <br> 
+</p>
+Line 3 <br>
+Line 4 <br> 
+<br> 
         </div>
         <div class="author-section">
             <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Author Headshot">
             <span class="author-name">Jayden C</span>
         </div>
     </div>
+    <footer>
+        <p>Verses From a Self-Doubting Enby</p>
+    </footer>
 </body>
 </html>
