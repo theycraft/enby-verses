@@ -3,99 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Title Here</title>
+    <title>Poem Template</title>
     <style>
+        @font-face {
+            font-family: 'LemonTuesday';
+            src: url('./LemonTuesday.otf') format('opentype');
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #2C2C2C;
-            background-color: #F5F5F5;
+            color: #000;
+            background-image: url('https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
         }
+
         .poem-container {
             max-width: 800px;
-            margin: 20px auto;
-            background: #FFFFFF;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .poem-container h1 {
+
+        .poem-title {
+            font-family: 'LemonTuesday', cursive;
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: left;
+            text-align: center;
+            margin-bottom: 1rem;
         }
-        .poem-container .published-date {
+
+        .poem-date {
             font-size: 1rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-            text-align: left;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #444;
         }
-        .poem-container p {
+
+        .poem-body {
             font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 0 0 1rem;
-            text-align: left;
+            line-height: 1.8;
+            text-align: justify;
+            color: #2C2C2C;
+            margin-bottom: 2rem;
         }
-        .signature {
+
+        .author-section {
             display: flex;
             align-items: center;
-            margin-top: 2rem;
-            font-size: 1rem;
-            color: #555;
+            justify-content: center;
+            gap: 0.5rem;
         }
-        .signature img {
-            width: 40px;
-            height: 40px;
+
+        .author-section img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            margin-right: 10px;
+            border: 2px solid #FFFFFF;
             object-fit: cover;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
+
+        .author-section .author-name {
             font-size: 1rem;
             color: #2C2C2C;
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid #2C2C2C;
-            border-radius: 4px;
-            transition: background-color 0.3s, color 0.3s;
         }
-        .back-link:hover {
-            background-color: #2C2C2C;
-            color: #FFFFFF;
-        }
-        @media (max-width: 768px) {
+
+        @media (max-width: 767px) {
             .poem-container {
-                padding: 15px;
+                padding: 1rem;
+                margin: 1rem;
             }
-            .poem-container h1 {
+
+            .poem-title {
                 font-size: 2rem;
             }
-            .poem-container p {
-                font-size: 1.1rem;
+
+            .poem-body {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="poem-container">
-        <h1>Place Title Here</h1>
-        <div class="published-date">Published: Place Date Here</div>
-        <p>
-            Write your poem here. Use <br> for line breaks to format your poem.<br>
-            For example:<br><br>
-            Roses are red,<br>
-            Violets are blue,<br>
-            Sugar is sweet,<br>
-            And so are you.<br>
-        </p>
-        <div class="signature">
-            <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Jayden C's headshot">
-            <span>Jayden C</span>
+        <h1 class="poem-title">[Poem Title]</h1>
+        <p class="poem-date">Published on [Date]</p>
+        <div class="poem-body">
+            <p>[Poem Line 1]</p>
+            <p>[Poem Line 2]</p>
+            <p>[Poem Line 3]</p>
+            <p>[Continue Poem...]</p>
         </div>
-        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="author-section">
+            <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Author Headshot">
+            <span class="author-name">Jayden C</span>
+        </div>
     </div>
 </body>
 </html>
