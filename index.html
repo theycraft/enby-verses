@@ -71,8 +71,14 @@
             background-color: #FC92E9; /* Welcome section background */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            margin: 2rem auto; /* Centered */
+            margin: -50px auto 2rem; /* Centered and overlapping header */
             border-radius: 8px;
+        }
+        @media (max-width: 767px) {
+            .welcome-section {
+                margin: -50px auto 2rem; /* Maintain overlap on mobile */
+                max-width: 90%; /* Add padding on mobile */
+            }
         }
         .welcome-section img {
             width: 120px;
