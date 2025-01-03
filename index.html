@@ -196,18 +196,18 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const poems = document.querySelectorAll(".poem-list li");
+    const poems = document.querySelectorAll(".poem-list li");
 
-            poems.forEach(poem => {
-                const publishDate = poem.getAttribute("data-publish-date");
-                const currentDate = new Date();
-                const publishDateTime = new Date(publishDate);
+    poems.forEach(poem => {
+        const publishDate = poem.getAttribute("data-publish-date"); // ISO 8601 string in UTC
+        const currentDate = new Date(); // Local time
+        const publishDateTime = new Date(publishDate); // Parsed as UTC automatically
 
-                if (currentDate >= publishDateTime) {
-                    poem.style.display = "block"; // Show the poem if publish date has passed
-                }
-            });
-        });
+        if (currentDate >= publishDateTime) {
+            poem.style.display = "block"; // Show the poem if publish date has passed
+        }
+    });
+});
     </script>
 </body>
 </html>
