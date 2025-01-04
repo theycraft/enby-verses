@@ -176,10 +176,20 @@
       text-align: center;
     }
 
+    /* Make the poem list span two columns automatically */
     .poem-list ul {
-      list-style: none;
+      column-count: 2;
+      column-gap: 1.5rem;
+      list-style-type: none;
       padding: 0;
       margin: 0;
+    }
+
+    /* If you’d like to revert to one column on mobile devices */
+    @media (max-width: 767px) {
+      .poem-list ul {
+        column-count: 1;
+      }
     }
 
     /* 
@@ -190,7 +200,7 @@
       display: inline-block;
       text-decoration: none;
       color: #2C2C2C;
-      font-size: 1.25rem;
+      font-size: 1rem; /* Slightly smaller text size */
       padding: 0.5rem 1rem;
       background-color: #FFFFFF;
       border: 1px solid #2C2C2C;
@@ -211,8 +221,9 @@
       transform: translateX(5px);
     }
 
+    /* Hide until publish date arrives */
     .poem-list li {
-      display: none; /* Hide until publish date arrives */
+      display: none;
       margin-bottom: 1rem;
     }
 
