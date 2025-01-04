@@ -22,11 +22,6 @@
     gtag('config', 'G-GGL45VKHJ3');
   </script>
 
-  <!-- 
-    Removed the window.TallyConfig block so it doesn't auto-open.
-    We'll open the form from the floating bubble instead.
-  -->
-
   <!-- Keep this script so we can manually open Tally form on demand. -->
   <script async src="https://tally.so/widgets/embed.js"></script>
   
@@ -111,7 +106,7 @@
       background-color: #FC92E9;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       max-width: 800px;
-      margin: 2rem auto; /* No negative margin on mobile. */
+      margin: 2rem auto;
       border-radius: 8px;
     }
 
@@ -139,7 +134,7 @@
       text-align: center;
     }
 
-    /* Media query overrides */
+    /* Media query overrides for .welcome-section */
     @media (max-width: 767px) {
       .welcome-section {
         flex-direction: column;
@@ -156,7 +151,6 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
-        /* If you like the overlap on larger screens, re-add negative margin: */
         margin: -50px auto 2rem;
       }
 
@@ -246,6 +240,29 @@
     }
     .floating-bubble:hover {
       background-color: #fa65d5; /* Slightly darker pink on hover */
+    }
+
+    /* ---------------------------------
+       FIX FOR TITLE ON MOBILE
+       Add or override below
+    --------------------------------- */
+    @media (max-width: 767px) {
+      header {
+        /* Allow the header to expand for multiple lines of text */
+        height: auto;
+      }
+      header .header-content {
+        /* Let the text flow, removing absolute + transform */
+        position: static;
+        transform: none;
+        top: auto;
+        left: auto;
+        margin: 1rem 0;
+      }
+      header .title-block h1 {
+        /* Scale down the font on smaller screens */
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
