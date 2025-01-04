@@ -24,13 +24,16 @@
 
   <!-- Keep this script so we can manually open Tally form on demand. -->
   <script async src="https://tally.so/widgets/embed.js"></script>
-
+  
   <style>
     @font-face {
       font-family: 'LemonTuesday';
       src: url('./LemonTuesday.otf') format('opentype');
     }
 
+    /* ---------------------------------
+       BASE PAGE & BODY STYLES
+    --------------------------------- */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -49,6 +52,9 @@
       }
     }
 
+    /* ---------------------------------
+       HEADER
+    --------------------------------- */
     header {
       position: relative;
       width: 100%;
@@ -93,6 +99,22 @@
       margin: 0;
     }
 
+    @media (max-width: 767px) {
+      header {
+        height: auto; /* Let header expand on smaller devices */
+      }
+      header .header-content {
+        position: static;
+        transform: none;
+        top: auto;
+        left: auto;
+        margin: 1rem 0;
+      }
+      header .title-block h1 {
+        font-size: 1.6rem; /* Smaller text on mobile */
+      }
+    }
+
     /* ---------------------------------
        WELCOME SECTION
     --------------------------------- */
@@ -109,10 +131,10 @@
       border-radius: 8px;
     }
 
-    /* Force the image to remain a perfect circle. */
+    /* Keep the image in a circle */
     .welcome-section img {
       width: 120px;
-      aspect-ratio: 1 / 1; /* Fallback in modern browsers */
+      aspect-ratio: 1 / 1; /* fallback approach in modern browsers */
       object-fit: cover;
       border-radius: 50%;
       border: 3px solid #F5F5F5;
@@ -165,8 +187,7 @@
       max-width: 800px;
       margin: 2rem auto;
       padding: 1.5rem;
-      /* Make the background slightly opaque: */
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.9); /* Slight opacity */
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -177,7 +198,6 @@
       text-align: center;
     }
 
-    /* Make the poem list span two columns automatically */
     .poem-list ul {
       column-count: 2;
       column-gap: 1.5rem;
@@ -186,14 +206,13 @@
       margin: 0;
     }
 
-    /* If you’d like to revert to one column on mobile devices */
     @media (max-width: 767px) {
       .poem-list ul {
         column-count: 1;
       }
     }
 
-    /* Hover effect for poem links */
+    /* Poem links styling */
     .poem-list a {
       display: inline-block;
       text-decoration: none;
@@ -205,25 +224,31 @@
       border-radius: 4px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
+
     .poem-list a:hover {
-      background-color: #FFD700;
+      background-color: #FFD700; /* highlight color */
       color: #000000;
     }
-    /* Hover effect for just the emoji */
+
+    /* Move just the emoji on hover */
     .poem-list a .emoji {
       display: inline-block;
       transition: transform 0.2s ease;
     }
+
     .poem-list a:hover .emoji {
       transform: translateX(5px);
     }
 
-    /* Hide until publish date arrives */
+    /* Hide each poem until its publish date arrives */
     .poem-list li {
       display: none;
       margin-bottom: 1rem;
     }
 
+    /* ---------------------------------
+       FOOTER
+    --------------------------------- */
     footer {
       text-align: center;
       padding: 1rem;
@@ -250,7 +275,7 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       transition: background-color 0.2s ease;
-      z-index: 9999; /* Keep it above other elements */
+      z-index: 9999;
 
       /* Pulsate animation */
       animation: pulsate 2s infinite;
@@ -273,57 +298,40 @@
     }
 
     /* ---------------------------------
-       FIX FOR TITLE ON MOBILE
+       KEY CONTAINER (Panel + Tab)
     --------------------------------- */
-    @media (max-width: 767px) {
-      header {
-        height: auto;
-      }
-      header .header-content {
-        position: static;
-        transform: none;
-        top: auto;
-        left: auto;
-        margin: 1rem 0;
-      }
-      header .title-block h1 {
-        font-size: 1.6rem;
-      }
-    }
-
-    /* ---------------------------------
-       KEY TAB & PANEL
-    --------------------------------- */
+    /* 
+      By making the container 250px wide and left: -225px,
+      25px remains visible on screen (like a peek).
+    */
     .key-container {
       position: fixed;
       top: 50%;
-      left: -250px; /* Hide off-screen by default */
+      left: -225px; /* Show 25px so the tab partially peeks out */
       transform: translateY(-50%);
       width: 250px;
       background-color: #FFFFFF;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-radius: 0 4px 4px 0;
       transition: left 0.3s ease;
-      z-index: 9998; /* Just behind the floating bubble */
+      z-index: 9998; /* Just behind the floating bubble if it overlaps */
     }
 
-    /* Slide the entire container into view */
+    /* Move the container fully into view */
     .key-container.show {
       left: 0;
     }
 
-    /* Key content area inside the panel */
+    /* Key content area (the inside of the panel) */
     .key-content {
       padding: 1rem;
       margin: 1rem 0;
     }
-
     .key-content h2 {
       margin-top: 0;
       font-size: 1.1rem;
       text-align: center;
     }
-
     .key-content ul {
       list-style: none;
       padding: 0;
@@ -334,13 +342,10 @@
       font-size: 0.95rem;
     }
 
-    /*
-      The clickable 'tab' is part of the container 
-      so it moves in/out with the panel.
-    */
+    /* The tab is part of the container so it moves with the panel */
     .key-tab {
       position: absolute;
-      right: -38px; /* Move the tab outside the box */
+      right: 0; /* At the container's right edge */
       top: 50%;
       transform: translateY(-50%) rotate(-90deg);
       transform-origin: center center;
@@ -349,10 +354,26 @@
       background-color: #81E6D9;
       color: #2C2C2C;
       padding: 0.5rem 0;
-      border-radius: 4px 4px 0 0; /* Round corners a bit */
+      border-radius: 4px 4px 0 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       cursor: pointer;
       font-weight: bold;
+    }
+
+    /* ---------------------------------
+       ONE-TIME NUDGE ANIMATION
+    --------------------------------- */
+    /* .nudge triggers a small in-out animation to draw attention */
+    .key-container.nudge {
+      animation: tabNudge 1.5s ease-in-out;
+    }
+
+    @keyframes tabNudge {
+      0%   { left: -225px; }
+      30%  { left: -210px; }  /* Nudges out a bit */
+      50%  { left: -205px; }  /* Nudges out a bit more */
+      80%  { left: -210px; }
+      100% { left: -225px; }  /* Returns to resting place */
     }
   </style>
 </head>
@@ -385,6 +406,7 @@
     <div class="poem-list">
       <h2>Poems</h2>
       <ul>
+        <!-- Each poem link is hidden until its publish date is reached -->
         <li data-publish-date="2025-01-04T16:15:00Z">
           <a href="strangersnow.html"><span class="emoji">💔</span> Strangers Now</a>
         </li>
@@ -444,10 +466,10 @@
 
   <!-- KEY CONTAINER (Panel + Tab) -->
   <div id="keyContainer" class="key-container">
-    <!-- Tab that triggers the panel to open/close -->
+    <!-- The tab that toggles the panel -->
     <div class="key-tab" onclick="toggleKeyPanel()">Key</div>
-
-    <!-- Panel content -->
+    
+    <!-- Panel Content -->
     <div class="key-content">
       <h2>Key</h2>
       <ul>
@@ -480,9 +502,16 @@
           poem.style.display = "block";
         }
       });
+
+      // Trigger one-time nudge animation on page load
+      const keyContainer = document.getElementById('keyContainer');
+      keyContainer.classList.add('nudge');
+      keyContainer.addEventListener('animationend', function() {
+        keyContainer.classList.remove('nudge');
+      });
     });
 
-    // Toggle the Key panel in or out
+    // Toggle the Key panel fully in or out
     function toggleKeyPanel() {
       const container = document.getElementById('keyContainer');
       container.classList.toggle('show');
