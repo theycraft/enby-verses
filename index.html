@@ -24,7 +24,7 @@
 
   <!-- Keep this script so we can manually open Tally form on demand. -->
   <script async src="https://tally.so/widgets/embed.js"></script>
-  
+
   <style>
     @font-face {
       font-family: 'LemonTuesday';
@@ -112,7 +112,7 @@
     /* Force the image to remain a perfect circle. */
     .welcome-section img {
       width: 120px;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1 / 1; /* Fallback in modern browsers */
       object-fit: cover;
       border-radius: 50%;
       border: 3px solid #F5F5F5;
@@ -251,6 +251,7 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       transition: background-color 0.2s ease;
       z-index: 9999; /* Keep it above other elements */
+
       /* Pulsate animation */
       animation: pulsate 2s infinite;
     }
@@ -293,58 +294,65 @@
     /* ---------------------------------
        KEY TAB & PANEL
     --------------------------------- */
-    /* The “tab” text you click on */
-    .key-tab {
+    .key-container {
       position: fixed;
-      left: 0;
       top: 50%;
-      transform: rotate(-90deg) translate(-50%, 0);
-      transform-origin: top left;
-      background-color: #81E6D9;
-      color: #2C2C2C;
-      padding: 0.5rem 1rem;
-      border-radius: 4px 4px 0 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 9999;
-      font-weight: bold;
-    }
-
-    /* The hidden side panel that slides out */
-    .key-panel {
-      position: fixed;
-      left: -220px; /* Start hidden offscreen */
-      top: 50%;
+      left: -250px; /* Hide off-screen by default */
       transform: translateY(-50%);
-      width: 220px;
+      width: 250px;
       background-color: #FFFFFF;
-      color: #2C2C2C;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-radius: 0 4px 4px 0;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 1rem;
       transition: left 0.3s ease;
-      z-index: 9998; /* Just behind the tab */
+      z-index: 9998; /* Just behind the floating bubble */
     }
 
-    /* When visible, move the panel into view */
-    .key-panel.show {
+    /* Slide the entire container into view */
+    .key-container.show {
       left: 0;
     }
 
-    .key-panel h2 {
+    /* Key content area inside the panel */
+    .key-content {
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .key-content h2 {
       margin-top: 0;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-align: center;
     }
 
-    .key-panel ul {
+    .key-content ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    .key-panel li {
+    .key-content li {
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
+    }
+
+    /*
+      The clickable 'tab' is part of the container 
+      so it moves in/out with the panel.
+    */
+    .key-tab {
+      position: absolute;
+      right: -38px; /* Move the tab outside the box */
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center center;
+      width: 80px;
+      text-align: center;
+      background-color: #81E6D9;
+      color: #2C2C2C;
+      padding: 0.5rem 0;
+      border-radius: 4px 4px 0 0; /* Round corners a bit */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -380,6 +388,7 @@
         <li data-publish-date="2025-01-04T16:15:00Z">
           <a href="strangersnow.html"><span class="emoji">💔</span> Strangers Now</a>
         </li>
+        
         <li data-publish-date="2025-01-04T00:30:00Z">
           <a href="lovedisappearance.html"><span class="emoji">💜</span> Love in the Disappearance</a>
         </li>
@@ -433,22 +442,25 @@
   <!-- FLOATING BUBBLE: triggers Tally popup -->
   <div class="floating-bubble" onclick="openTallyPopup()">💌</div>
 
-  <!-- SIDE TAB for KEY -->
-  <div class="key-tab" onclick="toggleKeyPanel()">Key</div>
+  <!-- KEY CONTAINER (Panel + Tab) -->
+  <div id="keyContainer" class="key-container">
+    <!-- Tab that triggers the panel to open/close -->
+    <div class="key-tab" onclick="toggleKeyPanel()">Key</div>
 
-  <!-- Hidden KEY PANEL -->
-  <div id="keyPanel" class="key-panel">
-    <h2>Key</h2>
-    <ul>
-      <li>🧠 – Neurodiversity</li>
-      <li>🏳️‍⚧️ – Gender Non-conformity</li>
-      <li>🏳️‍🌈 – LGBTQ+</li>
-      <li>💌 – Love</li>
-      <li>💔 – Heartbreak</li>
-      <li>💜 – Friendship</li>
-      <li>🌱 – General Life Experience</li>
-      <li>💚 – Mental Health</li>
-    </ul>
+    <!-- Panel content -->
+    <div class="key-content">
+      <h2>Key</h2>
+      <ul>
+        <li>🧠 – Neurodiversity</li>
+        <li>🏳️‍⚧️ – Gender Non-conformity</li>
+        <li>🏳️‍🌈 – LGBTQ+</li>
+        <li>💌 – Love</li>
+        <li>💔 – Heartbreak</li>
+        <li>💜 – Friendship</li>
+        <li>🌱 – General Life Experience</li>
+        <li>💚 – Mental Health</li>
+      </ul>
+    </div>
   </div>
 
   <script>
@@ -470,10 +482,10 @@
       });
     });
 
-    // Toggle the Key panel’s visibility
+    // Toggle the Key panel in or out
     function toggleKeyPanel() {
-      const panel = document.getElementById('keyPanel');
-      panel.classList.toggle('show');
+      const container = document.getElementById('keyContainer');
+      container.classList.toggle('show');
     }
   </script>
 </body>
