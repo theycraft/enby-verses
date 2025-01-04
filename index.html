@@ -335,7 +335,18 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-radius: 0 4px 4px 0;
       transition: left 0.3s ease;
-      z-index: 9998; /* just behind the floating bubble if overlapping */
+      z-index: 9998; /* just behind the floating bubble if overlapping 
+
+
+*/
+
+}
+
+/* On hover, nudge it out 15px more so the user sees a “peek” */
+.key-container:hover {
+  right: -210px;
+}
+
     }
     .key-container.show {
       right: 0; /* slide fully into view */
