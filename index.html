@@ -12,41 +12,38 @@
     <meta property="og:image" content="https://i.postimg.cc/cLqkGyjC/Screenshot-2025-01-01-233506.png">
     <meta property="og:url" content="https://neurospicyenby.github.io/enby-verses/index.html">
     <meta property="og:type" content="website">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGL45VKHJ3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    
+    <!-- Google Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGL45VKHJ3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GGL45VKHJ3');
+    </script>
 
-  gtag('config', 'G-GGL45VKHJ3');
-</script>
+    <!-- Popup Form Integration -->
+    <script>
+        window.TallyConfig = {
+            "formId": "wMva4E",
+            "popup": {
+                "emoji": {
+                    "text": "👋",
+                    "animation": "wave"
+                },
+                "layout": "modal",
+                "alignLeft": true,
+                "autoClose": 0,
+                "doNotShowAfterSubmit": true
+            }
+        };
+    </script>
+    <script async src="https://tally.so/widgets/embed.js"></script>
 
-<script>
-window.TallyConfig = {
-  "formId": "wMva4E",
-  "popup": {
-    "emoji": {
-      "text": "👋",
-      "animation": "wave"
-    },
-    "layout": "modal",
-    "alignLeft": true,
-    "autoClose": 0,
-    "doNotShowAfterSubmit": true
-  }
-};
-</script>
-
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verses From a Self-Doubting Enby</title>
     <style>
         @font-face {
             font-family: 'LemonTuesday';
-            src: url('./LemonTuesday.otf') format('opentype'); /* Replace with your correct path */
+            src: url('./LemonTuesday.otf') format('opentype');
         }
 
         body {
@@ -60,152 +57,95 @@ window.TallyConfig = {
             background-attachment: fixed;
         }
 
-        /* Mobile-specific background */
         @media (max-width: 767px) {
             body {
                 background-image: url('https://i.postimg.cc/X7ykv68S/DALL-E-2025-01-01-21-23-26-An-abstract-artwork-featuring-flowing-intertwining-waves-of-pastel-col.webp');
-                background-attachment: scroll; /* Adjust as needed for mobile experience */
+                background-attachment: scroll;
             }
         }
 
         header {
             position: relative;
             width: 100%;
-            height: 300px; /* Adjust as needed */
+            height: 300px;
         }
+
         header .header-content {
             position: absolute;
-            top: 45%; /* Adjusted for better spacing */
+            top: 45%;
             left: 0;
             transform: translateY(-50%);
             color: #2C2C2C;
             padding: 0 1rem;
         }
+
         header .title-block {
-            background-color: #81E6D9; /* Mint green for title */
-            padding: 0.5rem 1rem; /* Reduced padding */
+            background-color: #81E6D9;
+            padding: 0.5rem 1rem;
             margin: 0 0 0.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-width: 70%;
             border-radius: 4px;
         }
+
         header .title-block h1 {
-            font-size: 2rem; /* Adjusted font size */
+            font-size: 2rem;
             margin: 0;
-            font-family: 'LemonTuesday', cursive; /* Apply custom font */
+            font-family: 'LemonTuesday', cursive;
         }
+
         header .tagline-block {
-            background-color: #C7C1F8; /* Tagline background */
-            padding: 0.5rem 1rem; /* Reduced padding */
+            background-color: #C7C1F8;
+            padding: 0.5rem 1rem;
             margin: 0 0 0.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-width: 70%;
             border-radius: 4px;
         }
+
         header .tagline-block p {
-            font-size: 0.9rem; /* Reduced font size */
+            font-size: 0.9rem;
             margin: 0;
         }
-        @media (min-width: 768px) {
-            header .title-block h1 {
-                font-size: 2.8rem; /* Adjusted desktop font size */
-            }
-            header .tagline-block p {
-                font-size: 1.1rem; /* Reduced desktop font size */
-            }
-        }
+
         .welcome-section {
-            position: relative;
-            z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
             padding: 1.5rem;
-            background-color: #FC92E9; /* Welcome section background */
+            background-color: #FC92E9;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            margin: -50px auto 2rem; /* Centered and overlapping header */
+            margin: -50px auto 2rem;
             border-radius: 8px;
         }
-        @media (max-width: 767px) {
-            .welcome-section {
-                margin: -50px auto 2rem; /* Maintain overlap on mobile */
-                max-width: 85%; /* Increase the gap from screen edge */
-                padding: 1rem; /* Add padding inside the box */
-            }
-        }
+
         .welcome-section img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             border: 3px solid #F5F5F5;
             object-fit: cover;
-            display: block;
-            margin: 0 auto;
         }
-        .welcome-section-content {
-            text-align: center;
-        }
-        .welcome-section-content h2 {
+
+        .welcome-section h2 {
             font-size: 2rem;
             margin: 0 0 0.5rem;
         }
-        .welcome-section-content p {
+
+        .welcome-section p {
             font-size: 1rem;
             line-height: 1.6;
             color: #555;
             margin: 0;
-        }
-        @media (min-width: 768px) {
-            .welcome-section {
-                flex-direction: row;
-                align-items: center;
-            }
-            .welcome-section img {
-                flex-shrink: 0;
-                margin-right: 1.5rem;
-            }
-            .welcome-section-content {
-                text-align: left;
-            }
-        }
-        .poem-list {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1.5rem; /* Matching padding to Welcome section */
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .poem-list h2 {
-            font-size: 1.75rem;
-            margin: 1rem 0;
             text-align: center;
         }
-        .poem-list ul {
-            list-style: none;
-            padding: 1rem 0;
-            margin: 0;
-        }
+
         .poem-list li {
-            margin-bottom: 1rem;
+            display: none; /* Hide poems by default */
         }
-        .poem-list a {
-            display: inline-block;
-            text-decoration: none;
-            color: #2C2C2C;
-            font-size: 1.25rem;
-            padding: 0.5rem 1rem;
-            background-color: #FFFFFF;
-            border: 1px solid #2C2C2C;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .poem-list a:hover {
-            background-color: #FFD700; /* Highlight color */
-            color: #000000;
-        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -226,88 +166,78 @@ window.TallyConfig = {
             </div>
         </div>
     </header>
-    <section class="welcome-section" id="welcomeBox">
+    <section class="welcome-section">
         <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Headshot">
-        <div class="welcome-section-content">
-            <h2>Welcome</h2>
-            <p>
-                Welcome to Verses from a Self-Doubting Enby, a space where I share my thoughts in poetry form; 
-                sometimes serious, sometimes light-hearted, but always real. My poems explore everything from 
-                the complexities of identity to the random quirks of life that make you smile, with a few self-doubts thrown in for good measure.
-            </p>
-        </div>
+        <h2>Welcome</h2>
+        <p>
+            Welcome to Verses From a Self-Doubting Enby, a space where I share my thoughts in poetry form; 
+            sometimes serious, sometimes light-hearted, but always real. My poems explore everything from 
+            the complexities of identity to the random quirks of life that make you smile, with a few self-doubts thrown in for good measure.
+        </p>
     </section>
     <main>
         <div class="poem-list">
             <h2>Poems</h2>
             <ul>
-
-                <li data-publish-date="2025-01-04T00:30Z">
+                <li data-publish-date="2025-01-04T00:30:00Z">
                     <a href="lovedisappearance.html">🫥 Love in the Disappearance</a>
                 </li>
-                <li data-publish-date="2025-01-03T23:00Z">
+                <li data-publish-date="2025-01-03T23:00:00Z">
                     <a href="eachtime.html">♥️ Each Time That One Loves</a>
                 </li>
-                <li data-publish-date="2025-01-01T10:00">
+                <li data-publish-date="2025-01-01T10:00:00Z">
                     <a href="DontMockMyMonogamy.html">💍 Don't Mock My Monogamy</a>
                 </li>
-                <li data-publish-date="2025-01-01T16:00">
+                <li data-publish-date="2025-01-01T16:00:00Z">
                     <a href="revolvingclosetdoor.html">🚪 Revolving Closet Door</a>
                 </li>
-                <li data-publish-date="2025-01-01T09:00">
+                <li data-publish-date="2025-01-01T09:00:00Z">
                     <a href="theyrewinning.html">🏆 They're Winning</a>
                 </li>
-                <li data-publish-date="2025-01-01T13:00">
+                <li data-publish-date="2025-01-01T13:00:00Z">
                     <a href="uninvited.html">🚫 Uninvited</a>
                 </li>
-                <li data-publish-date="2025-01-01T17:30">
+                <li data-publish-date="2025-01-01T17:30:00Z">
                     <a href="thelasttime.html">⏳ The Last Time</a>
                 </li>
-                <li data-publish-date="2025-01-01T11:15">
+                <li data-publish-date="2025-01-01T11:15:00Z">
                     <a href="wandering.html">🌲 Wandering</a>
                 </li>
-                <li data-publish-date="2025-01-01T19:00">
+                <li data-publish-date="2025-01-01T19:00:00Z">
                     <a href="threadsunravelled.html">🧵 Threads Unravelled</a>
                 </li>
-                <li data-publish-date="2025-01-01T08:45">
+                <li data-publish-date="2025-01-01T08:45:00Z">
                     <a href="adhdparalysis.html">🌀 ADHD Paralysis</a>
                 </li>
-                <li data-publish-date="2025-01-01T15:00">
+                <li data-publish-date="2025-01-01T15:00:00Z">
                     <a href="silentblueticks.html">📵 Silent Blue Ticks</a>
                 </li>
-                <li data-publish-date="2025-01-01T10:00">
-                    <a href="punctuationmatters.html">✍️ Punctuation Matters</a>
-                </li>
-                <li data-publish-date="2025-01-01T14:30">
+                <li data-publish-date="2025-01-01T14:30:00Z">
                     <a href="notjustaquirk.html">✨ Not Just a Quirk</a>
                 </li>
-                <li data-publish-date="2025-01-01T18:00">
+                <li data-publish-date="2025-01-01T18:00:00Z">
                     <a href="tomboy.html">👕 Tomboy</a>
                 </li>
-
-
             </ul>
         </div>
     </main>
     <footer>
-        <p>© 2024 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
+        <p>© 2025 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
     </footer>
-  <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
-    const poems = document.querySelectorAll(".poem-list li");
+            const poems = document.querySelectorAll(".poem-list li");
 
-    poems.forEach(poem => {
-        const publishDate = poem.getAttribute("data-publish-date"); // ISO 8601 string in UTC
-        const currentDate = new Date(); // Local time
-        const publishDateTime = new Date(publishDate); // Parsed as UTC automatically
+            poems.forEach(poem => {
+                const publishDate = poem.getAttribute("data-publish-date");
+                const currentDate = new Date();
+                const publishDateTime = new Date(publishDate);
 
-        if (currentDate >= publishDateTime) {
-            poem.style.display = "block"; // Show the poem if publish date has passed
-        }
-    });
-});
-
-
-
+                if (currentDate >= publishDateTime) {
+                    poem.style.display = "block"; // Show poems whose publish date has passed
+                }
+            });
+        });
+    </script>
 </body>
 </html>
