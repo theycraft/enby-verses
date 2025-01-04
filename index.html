@@ -180,7 +180,7 @@
     }
 
     /* ---------------------------------
-       POEM LIST & OTHER SECTIONS
+       POEM LIST (CHRONOLOGICAL)
     --------------------------------- */
     .poem-list {
       max-width: 800px;
@@ -243,7 +243,7 @@
     }
 
     /* ---------------------------------
-       THEME LISTS
+       THEME LISTS (AUTO-POPULATED)
     --------------------------------- */
     .theme-lists {
       max-width: 800px;
@@ -323,31 +323,44 @@
     }
 
     /* ---------------------------------
-       KEY CONTAINER (Panel + Tab)
+       KEY CONTAINER (OFFSCREEN PANEL + TAB)
     --------------------------------- */
-    /* 
-      By making the container 250px wide and left: -225px,
-      25px remains visible on screen (like a peek).
-    */
     .key-container {
       position: fixed;
       top: 50%;
-      left: -225px; /* Show 25px so the tab partially peeks out */
+      left: -225px; /* keep partially offscreen, e.g. 25px visible if width=250px */
       transform: translateY(-50%);
       width: 250px;
       background-color: #FFFFFF;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-radius: 0 4px 4px 0;
       transition: left 0.3s ease;
-      z-index: 9998; /* Just behind the floating bubble if it overlaps */
+      z-index: 9998; /* just behind the floating bubble if overlapping */
     }
-
-    /* Move the container fully into view */
     .key-container.show {
-      left: 0;
+      left: 0; /* slide fully into view */
     }
 
-    /* Key content area (the inside of the panel) */
+    /* TAB that protrudes horizontally from the container's right edge */
+    .key-tab {
+      position: absolute;
+      top: 20px;     /* vertical offset inside the container */
+      right: -50px;  /* how far it protrudes; negative = outside container edge */
+      width: 80px;
+      height: 40px;
+      background-color: #81E6D9;
+      color: #2C2C2C;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 4px 0 0 4px; /* left corners rounded for a 'tab' shape */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Key content area inside the panel */
     .key-content {
       padding: 1rem;
       margin: 1rem 0;
@@ -367,38 +380,16 @@
       font-size: 0.95rem;
     }
 
-    /* The tab is part of the container so it moves with the panel */
-    .key-tab {
-      position: absolute;
-      right: 0; /* At the container's right edge */
-      top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
-      transform-origin: center center;
-      width: 80px;
-      text-align: center;
-      background-color: #81E6D9;
-      color: #2C2C2C;
-      padding: 0.5rem 0;
-      border-radius: 4px 4px 0 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* ---------------------------------
-       ONE-TIME NUDGE ANIMATION
-    --------------------------------- */
-    /* .nudge triggers a small in-out animation to draw attention */
+    /* ONE-TIME NUDGE ANIMATION */
     .key-container.nudge {
       animation: tabNudge 1.5s ease-in-out;
     }
-
     @keyframes tabNudge {
       0%   { left: -225px; }
-      30%  { left: -210px; }  /* Nudges out a bit */
-      50%  { left: -205px; }  /* Nudges out a bit more */
+      30%  { left: -210px; }
+      50%  { left: -205px; }
       80%  { left: -210px; }
-      100% { left: -225px; }  /* Returns to resting place */
+      100% { left: -225px; }
     }
   </style>
 </head>
@@ -432,11 +423,11 @@
     <div class="poem-list">
       <h2>Poems</h2>
       <ul>
-        <!-- Adjust data-themes as appropriate -->
+        <!-- Adjust data-themes as desired -->
         <li data-publish-date="2025-01-04T16:15:00Z" data-themes="heartbreak">
           <a href="strangersnow.html"><span class="emoji">💔</span> Strangers Now</a>
         </li>
-        <li data-publish-date="2025-01-04T00:30:00Z" data-themes="friendship">
+        <li data-publish-date="2025-01-04T00:30:00Z" data-themes="love">
           <a href="lovedisappearance.html"><span class="emoji">💜</span> Love in the Disappearance</a>
         </li>
         <li data-publish-date="2025-01-03T23:00:00Z" data-themes="love">
@@ -454,8 +445,8 @@
         <li data-publish-date="2025-01-01T09:00:00Z" data-themes="lgbtq+">
           <a href="theyrewinning.html"><span class="emoji">🏳️‍🌈</span> They're Winning</a>
         </li>
-        <li data-publish-date="2025-01-01T13:00:00Z" data-themes="mental-health">
-          <a href="uninvited.html"><span class="emoji">💚</span> Uninvited</a>
+        <li data-publish-date="2025-01-01T13:00:00Z" data-themes="heartbreak">
+          <a href="uninvited.html"><span class="emoji">🚫</span> Uninvited</a>
         </li>
         <li data-publish-date="2025-01-01T17:30:00Z" data-themes="life">
           <a href="thelasttime.html"><span class="emoji">🌱</span> The Last Time</a>
@@ -481,47 +472,47 @@
       </ul>
     </div>
 
-    <!-- THEME LISTS (automatically populated) -->
+    <!-- THEME LISTS (auto-populated) -->
     <section class="theme-lists">
       <h2 style="text-align:center;">Explore by Theme</h2>
 
       <div id="theme-neurodiversity" class="theme-section">
-        <h2>🧠 Neurodiversity</h2>
+        <h2>Neurodiversity</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-gender-nonconformity" class="theme-section">
-        <h2>🏳️‍⚧️ Gender Non-conformity</h2>
+        <h2>Gender Non-conformity</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-lgbtq+" class="theme-section">
-        <h2>🏳️‍🌈 LGBTQ+ </h2>
+        <h2>LGBTQ+</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-love" class="theme-section">
-        <h2>💌 Love </h2>
+        <h2>Love</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-heartbreak" class="theme-section">
-        <h2>💔 Heartbreak</h2>
+        <h2>Heartbreak</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-friendship" class="theme-section">
-        <h2>💜 Friendship </h2>
+        <h2>Friendship</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-life" class="theme-section">
-        <h2>🌱 General Life Experience </h2>
+        <h2>General Life Experience</h2>
         <ul class="theme-poems"></ul>
       </div>
 
       <div id="theme-mental-health" class="theme-section">
-        <h2>💚 Mental Health </h2>
+        <h2>Mental Health</h2>
         <ul class="theme-poems"></ul>
       </div>
     </section>
@@ -534,9 +525,9 @@
   <!-- FLOATING BUBBLE: triggers Tally popup -->
   <div class="floating-bubble" onclick="openTallyPopup()">💌</div>
 
-  <!-- KEY CONTAINER (Panel + Tab) -->
+  <!-- KEY CONTAINER (PANEL + TAB) -->
   <div id="keyContainer" class="key-container">
-    <!-- The tab that toggles the panel -->
+    <!-- Horizontal tab protruding from the panel edge -->
     <div class="key-tab" onclick="toggleKeyPanel()">Key</div>
     
     <!-- Panel Content -->
@@ -561,7 +552,6 @@
       Tally.openPopup('wMva4E');
     }
 
-    // On DOMContentLoaded, reveal poems by publish date and build theme lists
     document.addEventListener("DOMContentLoaded", function() {
       const poems = document.querySelectorAll(".poem-list li");
       const now = new Date();
@@ -575,24 +565,22 @@
         }
       });
 
-      // 2) Build "by theme" lists
+      // 2) Populate "by theme" lists
       poems.forEach(poem => {
-        // Only deal with poems that are currently visible
+        // Only deal with poems that are visible
         if (poem.style.display !== "block") return;
 
         const themeString = poem.getAttribute("data-themes");
-        if (!themeString) return; // no theme data, skip
+        if (!themeString) return; // no theme data => skip
 
-        // e.g. "lgbtq+,love" => ["lgbtq+", "love"]
         const themeList = themeString.split(",").map(t => t.trim().toLowerCase());
-
         themeList.forEach(theme => {
-          // Find the matching <div id="theme-<theme>"> 
+          // Find matching <div id="theme-<theme>"> 
           const themeSection = document.getElementById(`theme-${theme}`);
           if (themeSection) {
             const ul = themeSection.querySelector(".theme-poems");
             if (ul) {
-              // Clone the poem so it can appear in multiple theme lists if needed
+              // Clone the <li> so it can appear in multiple theme lists
               const clone = poem.cloneNode(true);
               ul.appendChild(clone);
             }
@@ -608,7 +596,7 @@
       });
     });
 
-    // Toggle the Key panel fully in or out
+    // Slide the Key panel in/out
     function toggleKeyPanel() {
       const container = document.getElementById('keyContainer');
       container.classList.toggle('show');
