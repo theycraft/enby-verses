@@ -36,15 +36,18 @@
       margin: 0;
       padding: 0;
       color: #2C2C2C;
-      /* Use the same background for all screen sizes */
       background-image: url('https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
 
-    /* Removed the mobile background override
-       so the desktop image is used on all devices. */
+    /* Make background scroll on mobile so it doesn't scale awkwardly */
+    @media (max-width: 767px) {
+      body {
+        background-attachment: scroll;
+      }
+    }
 
     header {
       position: relative;
@@ -108,10 +111,10 @@
 
     /* Force the image to remain a perfect circle. */
     .welcome-section img {
-      width: 120px;         /* fixed width */
+      width: 120px;
       aspect-ratio: 1 / 1;  /* enforce square shape */
-      object-fit: cover;    /* fill the square while preserving aspect ratio */
-      border-radius: 50%;   /* circle */
+      object-fit: cover;
+      border-radius: 50%;
       border: 3px solid #F5F5F5;
       display: block;
       margin: 0 auto 1rem auto;
@@ -130,13 +133,10 @@
       text-align: center;
     }
 
-    /* Media query overrides for .welcome-section */
     @media (max-width: 767px) {
-      /* On mobile, ensure there's some gap on left/right */
       .welcome-section {
         margin: 1rem;
       }
-
       .welcome-section img {
         margin-bottom: 1rem;
       }
@@ -149,11 +149,9 @@
         justify-content: flex-start;
         margin: -50px auto 2rem;
       }
-
       .welcome-section img {
         margin: 0 1.5rem 0 0;
       }
-
       .welcome-section h2,
       .welcome-section p {
         text-align: left;
