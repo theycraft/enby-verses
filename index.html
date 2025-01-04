@@ -120,17 +120,19 @@
       background-color: #FC92E9;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       max-width: 800px;
-      /* Removed negative top margin for mobile so it doesn't sit too high */
+      /* no negative margin on mobile, so it doesn’t sit too high */
       margin: 2rem auto;
       border-radius: 8px;
     }
 
+    /* Force the image to remain a perfect circle */
     .welcome-section img {
+      /* fixed width, but no fixed height, plus an aspect ratio */
       width: 120px;
-      height: 120px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
       border-radius: 50%;
       border: 3px solid #F5F5F5;
-      object-fit: cover;
       display: block;
       margin: 0 auto 1rem auto;
     }
@@ -151,8 +153,6 @@
     /* ---------------------------------
        MEDIA QUERIES
     --------------------------------- */
-
-    /* Mobile-specific overrides */
     @media (max-width: 767px) {
       .welcome-section {
         flex-direction: column;
@@ -164,13 +164,12 @@
       }
     }
 
-    /* Desktop and larger screens: put the image to the left, text on the right */
     @media (min-width: 768px) {
       .welcome-section {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
-        /* If you prefer the top overlap on larger screens, you can re-add the negative margin: */
+        /* optional negative margin for desktop overlap */
         margin: -50px auto 2rem;
       }
 
@@ -209,7 +208,7 @@
     }
 
     .poem-list li {
-      display: none; /* Hide poems by default until their publish date arrives */
+      display: none; /* Hide until publish date arrives */
       margin-bottom: 1rem;
     }
 
@@ -311,6 +310,7 @@
   <footer>
     <p>© 2025 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
   </footer>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const poems = document.querySelectorAll(".poem-list li");
