@@ -328,7 +328,7 @@
     .key-container {
       position: fixed;
       top: 50%;
-      left: -225px; /* keep partially offscreen, e.g. 25px visible if width=250px */
+      right: -225px; /* keep partially offscreen, e.g. 25px visible if width=250px */
       transform: translateY(-50%);
       width: 250px;
       background-color: #FFFFFF;
@@ -338,14 +338,14 @@
       z-index: 9998; /* just behind the floating bubble if overlapping */
     }
     .key-container.show {
-      left: 0; /* slide fully into view */
+      right: 0; /* slide fully into view */
     }
 
     /* TAB that protrudes horizontally from the container's right edge */
     .key-tab {
       position: absolute;
       top: 20px;     /* vertical offset inside the container */
-      right: -50px;  /* how far it protrudes; negative = outside container edge */
+      left: -50px;  /* how far it protrudes; negative = outside container edge */
       width: 80px;
       height: 40px;
       background-color: #81E6D9;
@@ -385,11 +385,11 @@
       animation: tabNudge 1.5s ease-in-out;
     }
     @keyframes tabNudge {
-      0%   { left: -225px; }
-      30%  { left: -210px; }
-      50%  { left: -205px; }
-      80%  { left: -210px; }
-      100% { left: -225px; }
+      0%   { right: -225px; }
+      30%  { right: -210px; }
+      50%  { right: -205px; }
+      80%  { right: -210px; }
+      100% { right: -225px; }
     }
   </style>
 </head>
