@@ -89,7 +89,7 @@
         }
 
         header .title-block h1 {
-            font-size: 2rem;
+            font-size: 2.8rem;
             margin: 0;
             font-family: 'LemonTuesday', cursive;
         }
@@ -104,7 +104,7 @@
         }
 
         header .tagline-block p {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             margin: 0;
         }
 
@@ -142,8 +142,47 @@
             text-align: center;
         }
 
+        .poem-list {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #FFFFFF; /* Solid white background */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .poem-list h2 {
+            font-size: 1.75rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .poem-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         .poem-list li {
             display: none; /* Hide poems by default */
+            margin-bottom: 1rem;
+        }
+
+        .poem-list a {
+            display: inline-block;
+            text-decoration: none;
+            color: #2C2C2C;
+            font-size: 1.25rem;
+            padding: 0.5rem 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #2C2C2C;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .poem-list a:hover {
+            background-color: #FFD700; /* Highlight color */
+            color: #000000;
         }
 
         footer {
