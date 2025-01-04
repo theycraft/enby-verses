@@ -36,19 +36,15 @@
       margin: 0;
       padding: 0;
       color: #2C2C2C;
+      /* Use the same background for all screen sizes */
       background-image: url('https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
 
-    /* Mobile background override */
-    @media (max-width: 767px) {
-      body {
-        background-image: url('https://i.postimg.cc/X7ykv68S/DALL-E-2025-01-01-21-23-26-An-abstract-artwork-featuring-flowing-intertwining-waves-of-pastel-col.webp');
-        background-attachment: scroll;
-      }
-    }
+    /* Removed the mobile background override
+       so the desktop image is used on all devices. */
 
     header {
       position: relative;
@@ -136,9 +132,9 @@
 
     /* Media query overrides for .welcome-section */
     @media (max-width: 767px) {
+      /* On mobile, ensure there's some gap on left/right */
       .welcome-section {
-        flex-direction: column;
-        margin: 1rem auto;
+        margin: 1rem;
       }
 
       .welcome-section img {
@@ -244,7 +240,6 @@
 
     /* ---------------------------------
        FIX FOR TITLE ON MOBILE
-       Add or override below
     --------------------------------- */
     @media (max-width: 767px) {
       header {
