@@ -183,7 +183,8 @@
     }
 
     /* 
-     * For hover effect on emoji 
+     * 1) We wrapped each emoji in <span class="emoji">…</span> in the HTML.
+     * 2) Below are the rules to animate that emoji on hover.
      */
     .poem-list a {
       display: inline-block;
@@ -201,6 +202,7 @@
       color: #000000;
     }
 
+    /* This moves just the emoji on hover */
     .poem-list a .emoji {
       display: inline-block;
       transition: transform 0.2s ease;
@@ -245,6 +247,7 @@
       /* Pulsate animation */
       animation: pulsate 2s infinite;
     }
+
     .floating-bubble:hover {
       background-color: #fa65d5;
     }
@@ -260,26 +263,6 @@
       100% {
         transform: scale(1);
       }
-    }
-
-    /* 
-     * KEYFRAMES FOR THE "FLY OFF" ANIMATION
-     * Adjust duration, rotation, etc. as desired.
-     */
-    @keyframes flyOff {
-      0% {
-        transform: translateX(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(400px) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* .fly-off class triggers the above animation */
-    .fly-off {
-      animation: flyOff 0.4s forwards ease-in;
     }
 
     /* ---------------------------------
@@ -332,7 +315,8 @@
       <h2>Poems</h2>
       <ul>
         <!--
-            Wrap each emoji in <span class="emoji"> so that the CSS and JS can target it specifically.
+            Note: We added <span class="emoji"> … </span> around each emoji.
+            This allows the CSS to target and animate the emoji specifically.
         -->
         <li data-publish-date="2025-01-04T00:30:00Z">
           <a href="lovedisappearance.html"><span class="emoji">🫥</span> Love in the Disappearance</a>
@@ -400,32 +384,6 @@
         if (currentDate >= publishDateTime) {
           poem.style.display = "block";
         }
-      });
-
-      // -------------------------------
-      // Fly Off Animation on Click
-      // -------------------------------
-      const poemLinks = document.querySelectorAll(".poem-list a");
-      poemLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
-          e.preventDefault(); // Stop immediate navigation
-          
-          // Find the emoji inside this link
-          const emoji = link.querySelector(".emoji");
-          if (emoji) {
-            // Add .fly-off class to start the animation
-            emoji.classList.add("fly-off");
-
-            // When animation is done, go to the link's href
-            emoji.addEventListener("animationend", function handler() {
-              emoji.removeEventListener("animationend", handler);
-              window.location.href = link.href;
-            });
-          } else {
-            // If no emoji for some reason, just navigate right away
-            window.location.href = link.href;
-          }
-        });
       });
     });
   </script>
