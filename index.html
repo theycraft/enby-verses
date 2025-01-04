@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Verses From a Self-Doubting Enby</title>
   <meta name="description" content="Poetry brought to you by Jayden">
   
@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://i.postimg.cc/cLqkGyjC/Screenshot-2025-01-01-233506.png">
   <meta property="og:url" content="https://neurospicyenby.github.io/enby-verses/index.html">
   <meta property="og:type" content="website">
-  
+
   <!-- Google Tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGL45VKHJ3"></script>
   <script>
@@ -22,24 +22,14 @@
     gtag('config', 'G-GGL45VKHJ3');
   </script>
 
-  <!-- Popup Form Integration -->
-  <script>
-      window.TallyConfig = {
-          "formId": "wMva4E",
-          "popup": {
-              "emoji": {
-                  "text": "👋",
-                  "animation": "wave"
-              },
-              "layout": "modal",
-              "alignLeft": true,
-              "autoClose": 0,
-              "doNotShowAfterSubmit": true
-          }
-      };
-  </script>
-  <script async src="https://tally.so/widgets/embed.js"></script>
+  <!-- 
+    Removed the window.TallyConfig block so it doesn't auto-open.
+    We'll open the form from the floating bubble instead.
+  -->
 
+  <!-- Keep this script so we can manually open Tally form on demand. -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
+  
   <style>
     @font-face {
       font-family: 'LemonTuesday';
@@ -57,6 +47,7 @@
       background-attachment: fixed;
     }
 
+    /* Mobile background override */
     @media (max-width: 767px) {
       body {
         background-image: url('https://i.postimg.cc/X7ykv68S/DALL-E-2025-01-01-21-23-26-An-abstract-artwork-featuring-flowing-intertwining-waves-of-pastel-col.webp');
@@ -120,18 +111,16 @@
       background-color: #FC92E9;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       max-width: 800px;
-      /* no negative margin on mobile, so it doesn’t sit too high */
-      margin: 2rem auto;
+      margin: 2rem auto; /* No negative margin on mobile. */
       border-radius: 8px;
     }
 
-    /* Force the image to remain a perfect circle */
+    /* Force the image to remain a perfect circle. */
     .welcome-section img {
-      /* fixed width, but no fixed height, plus an aspect ratio */
-      width: 120px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 50%;
+      width: 120px;         /* fixed width */
+      aspect-ratio: 1 / 1;  /* enforce square shape */
+      object-fit: cover;    /* fill the square while preserving aspect ratio */
+      border-radius: 50%;   /* circle */
       border: 3px solid #F5F5F5;
       display: block;
       margin: 0 auto 1rem auto;
@@ -150,9 +139,7 @@
       text-align: center;
     }
 
-    /* ---------------------------------
-       MEDIA QUERIES
-    --------------------------------- */
+    /* Media query overrides */
     @media (max-width: 767px) {
       .welcome-section {
         flex-direction: column;
@@ -169,7 +156,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
-        /* optional negative margin for desktop overlap */
+        /* If you like the overlap on larger screens, re-add negative margin: */
         margin: -50px auto 2rem;
       }
 
@@ -236,6 +223,30 @@
       color: #FFFFFF;
       margin-top: 2rem;
     }
+
+    /* ---------------------------------
+       FLOATING BUBBLE FOR TALLY
+    --------------------------------- */
+    .floating-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #FC92E9;
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.2s ease;
+      z-index: 9999; /* Keep it above other elements */
+    }
+    .floating-bubble:hover {
+      background-color: #fa65d5; /* Slightly darker pink on hover */
+    }
   </style>
 </head>
 <body>
@@ -249,6 +260,7 @@
       </div>
     </div>
   </header>
+
   <section class="welcome-section">
     <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Headshot">
     <div>
@@ -261,10 +273,12 @@
       </p>
     </div>
   </section>
+
   <main>
     <div class="poem-list">
       <h2>Poems</h2>
       <ul>
+        <!-- Each poem is hidden until its publish date arrives -->
         <li data-publish-date="2025-01-04T00:30:00Z">
           <a href="lovedisappearance.html">🫥 Love in the Disappearance</a>
         </li>
@@ -307,19 +321,27 @@
       </ul>
     </div>
   </main>
+
   <footer>
     <p>© 2025 Verses From a Self-Doubting Enby. Created with 💜 and reflection.</p>
   </footer>
 
+  <!-- FLOATING BUBBLE: triggers Tally popup -->
+  <div class="floating-bubble" onclick="openTallyPopup()">👋</div>
+
   <script>
+    function openTallyPopup() {
+      // Opens your Tally form in a popup by ID
+      Tally.openPopup('wMva4E');
+    }
+
+    // Show poems only after their publish date
     document.addEventListener("DOMContentLoaded", function() {
       const poems = document.querySelectorAll(".poem-list li");
       poems.forEach(poem => {
         const publishDate = poem.getAttribute("data-publish-date");
         const currentDate = new Date();
         const publishDateTime = new Date(publishDate);
-
-        // Show the poem if the current date/time is past the publish date/time
         if (currentDate >= publishDateTime) {
           poem.style.display = "block";
         }
