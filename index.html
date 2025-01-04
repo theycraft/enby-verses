@@ -193,15 +193,12 @@
       }
     }
 
-    /* 
-     * 1) We wrapped each emoji in <span class="emoji">…</span> in the HTML.
-     * 2) Below are the rules to animate that emoji on hover.
-     */
+    /* Hover effect for poem links */
     .poem-list a {
       display: inline-block;
       text-decoration: none;
       color: #2C2C2C;
-      font-size: 1rem; /* Slightly smaller text size */
+      font-size: 1rem;
       padding: 0.5rem 1rem;
       background-color: #FFFFFF;
       border: 1px solid #2C2C2C;
@@ -209,11 +206,10 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
     .poem-list a:hover {
-      background-color: #FFD700; /* Highlight color */
+      background-color: #FFD700;
       color: #000000;
     }
-
-    /* This moves just the emoji on hover */
+    /* Hover effect for just the emoji */
     .poem-list a .emoji {
       display: inline-block;
       transition: transform 0.2s ease;
@@ -255,7 +251,6 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       transition: background-color 0.2s ease;
       z-index: 9999; /* Keep it above other elements */
-
       /* Pulsate animation */
       animation: pulsate 2s infinite;
     }
@@ -264,7 +259,6 @@
       background-color: #fa65d5;
     }
 
-    /* Define the keyframes for the pulsate animation */
     @keyframes pulsate {
       0% {
         transform: scale(1);
@@ -282,7 +276,7 @@
     --------------------------------- */
     @media (max-width: 767px) {
       header {
-        height: auto; /* Allow the header to expand for multiple lines of text */
+        height: auto;
       }
       header .header-content {
         position: static;
@@ -292,8 +286,65 @@
         margin: 1rem 0;
       }
       header .title-block h1 {
-        font-size: 1.6rem; /* Scale down the font on smaller screens */
+        font-size: 1.6rem;
       }
+    }
+
+    /* ---------------------------------
+       KEY TAB & PANEL
+    --------------------------------- */
+    /* The “tab” text you click on */
+    .key-tab {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: rotate(-90deg) translate(-50%, 0);
+      transform-origin: top left;
+      background-color: #81E6D9;
+      color: #2C2C2C;
+      padding: 0.5rem 1rem;
+      border-radius: 4px 4px 0 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 9999;
+      font-weight: bold;
+    }
+
+    /* The hidden side panel that slides out */
+    .key-panel {
+      position: fixed;
+      left: -220px; /* Start hidden offscreen */
+      top: 50%;
+      transform: translateY(-50%);
+      width: 220px;
+      background-color: #FFFFFF;
+      color: #2C2C2C;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: left 0.3s ease;
+      z-index: 9998; /* Just behind the tab */
+    }
+
+    /* When visible, move the panel into view */
+    .key-panel.show {
+      left: 0;
+    }
+
+    .key-panel h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .key-panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .key-panel li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -329,7 +380,6 @@
         <li data-publish-date="2025-01-04T16:15:00Z">
           <a href="strangersnow.html"><span class="emoji">💔</span> Strangers Now</a>
         </li>
-        
         <li data-publish-date="2025-01-04T00:30:00Z">
           <a href="lovedisappearance.html"><span class="emoji">💜</span> Love in the Disappearance</a>
         </li>
@@ -339,10 +389,9 @@
         <li data-publish-date="2025-01-01T10:00:00Z">
           <a href="DontMockMyMonogamy.html"><span class="emoji">🏳️‍🌈</span> Don't Mock My Monogamy</a>
         </li>
-    <li data-publish-date="2025-01-01T18:00:00Z">
+        <li data-publish-date="2025-01-01T18:00:00Z">
           <a href="punctuationmatters.html"><span class="emoji">💚</span> Punctuation Matters</a>
         </li>
-
         <li data-publish-date="2025-01-01T16:00:00Z">
           <a href="revolvingclosetdoor.html"><span class="emoji">🏳️‍🌈</span> Revolving Closet Door</a>
         </li>
@@ -384,6 +433,24 @@
   <!-- FLOATING BUBBLE: triggers Tally popup -->
   <div class="floating-bubble" onclick="openTallyPopup()">💌</div>
 
+  <!-- SIDE TAB for KEY -->
+  <div class="key-tab" onclick="toggleKeyPanel()">Key</div>
+
+  <!-- Hidden KEY PANEL -->
+  <div id="keyPanel" class="key-panel">
+    <h2>Key</h2>
+    <ul>
+      <li>🧠 – Neurodiversity</li>
+      <li>🏳️‍⚧️ – Gender Non-conformity</li>
+      <li>🏳️‍🌈 – LGBTQ+</li>
+      <li>💌 – Love</li>
+      <li>💔 – Heartbreak</li>
+      <li>💜 – Friendship</li>
+      <li>🌱 – General Life Experience</li>
+      <li>💚 – Mental Health</li>
+    </ul>
+  </div>
+
   <script>
     function openTallyPopup() {
       // Opens your Tally form in a popup by ID
@@ -402,6 +469,12 @@
         }
       });
     });
+
+    // Toggle the Key panel’s visibility
+    function toggleKeyPanel() {
+      const panel = document.getElementById('keyPanel');
+      panel.classList.toggle('show');
+    }
   </script>
 </body>
 </html>
