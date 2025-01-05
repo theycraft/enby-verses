@@ -1,247 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Existing head content -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Poem with Trigger Warning</title>
+  <title>Verses From a Self-Doubting Enby</title>
+  <meta name="description" content="Poetry brought to you by Jayden">
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <!-- Existing meta tags -->
+  
+  <!-- Google Tag -->
+  <!-- Existing Google Tag code -->
+  
+  <!-- Keep this script so we can manually open Tally form on demand. -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
+  
+  <!-- External Trigger Warning CSS (if needed on index page) -->
+  <link rel="stylesheet" href="trigger-warning.css">
+  
+  <!-- Existing styles -->
   <style>
-    @font-face {
-      font-family: 'LemonTuesday';
-      src: url('./LemonTuesday.otf') format('opentype');
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #000;
-      background-image: url('https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
-    }
-
-    /* Button linking to home page */
-    .home-button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #2C2C2C;
-      font-size: 1rem;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      z-index: 5; /* ensure it's on top of blurred content */
-    }
-
-    /* Container for the poem content (initially blurred) */
-    #poemContent {
-      filter: blur(6px);
-      transition: filter 0.4s ease-in-out;
-      -webkit-filter: blur(6px);
-    }
-
-    /* Poem layout & style */
-    .poem-container {
+    /* Existing CSS code */
+    
+    /* Add the new Trigger Warning CSS here */
+    
+    /* ---------------------------------
+       TRIGGER WARNING SECTION
+    --------------------------------- */
+    .trigger-warning-section {
+      position: relative;
       max-width: 800px;
       margin: 2rem auto;
-      padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
+      padding: 1rem;
+      background-color: #FFE5E5; /* Light red background */
+      border: 2px solid #FF0000; /* Red border */
       border-radius: 8px;
+      text-align: center;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .poem-title {
-      font-family: 'LemonTuesday', cursive;
-      font-size: 2.5rem;
-      text-align: left;
-      margin-bottom: 1rem;
-    }
-
-    .poem-date {
-      font-size: 1rem;
-      text-align: left;
-      margin-bottom: 2rem;
-      color: #444;
-    }
-
-    .poem-body {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      text-align: left;
-      color: #2C2C2C;
-      margin-bottom: 2rem;
-    }
-
-    .author-section {
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      gap: 0.5rem;
-    }
-
-    .author-section img {
+    .warning-emoji {
+      position: absolute;
+      top: -25px; /* Adjust as needed */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      background-color: #FF0000; /* Red background */
+      color: #FFFFFF; /* White emoji */
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      border: 2px solid #FFFFFF;
-      object-fit: cover;
-    }
-
-    .author-section .author-name {
-      font-size: 1rem;
-      color: #2C2C2C;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #2C2C2C;
-      margin-top: 2rem;
-      font-size: 1rem;
-    }
-
-    @media (max-width: 767px) {
-      .poem-container {
-        padding: 1rem;
-        margin: 1rem;
-      }
-
-      .poem-title {
-        font-size: 2rem;
-      }
-
-      .poem-body {
-        font-size: 1rem;
-      }
-    }
-
-    /* Trigger Warning Overlay */
-    .trigger-warning-overlay {
-      position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 10;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      animation: pulsate 2s infinite;
+      cursor: pointer; /* Optional: if you want it clickable */
     }
 
-    .trigger-warning-content {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .trigger-warning-title {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #000;
-    }
-
-    .trigger-warning-text {
+    .trigger-warning-box p {
+      margin: 0;
       font-size: 1rem;
-      color: #333;
-      margin-bottom: 2rem;
+      color: #333333;
     }
 
-    .trigger-warning-buttons button {
-      margin: 0 1rem;
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      background-color: #2C2C2C;
-      transition: background-color 0.2s;
+    /* Pulsate Animation */
+    @keyframes pulsate {
+      0% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+      }
+      50% {
+        transform: translateX(-50%) scale(1.1);
+        box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0);
+      }
+      100% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+      }
     }
 
-    .trigger-warning-buttons button:hover {
-      background-color: #444;
+    /* Responsive Adjustments */
+    @media (max-width: 767px) {
+      .trigger-warning-section {
+        margin: 1rem;
+        padding: 0.8rem;
+      }
+
+      .warning-emoji {
+        top: -20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+
+      .trigger-warning-box p {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
-
 <body>
-  <!-- Home button -->
-  <a href="index.html" class="home-button">Home</a>
+  <header>
+    <!-- Existing header content -->
+  </header>
 
-  <!-- Trigger Warning Overlay -->
-  <div class="trigger-warning-overlay" id="triggerWarningOverlay">
-    <div class="trigger-warning-content">
-      <h2 class="trigger-warning-title">⚠️<br>Trigger Warning</h2>
-      <!-- Update this text to describe specific trigger(s) -->
-      <p class="trigger-warning-text">
-        This poem contains themes of [topics/triggers] which may be distressing to some readers.
-        Please proceed with caution.
-      </p>
-      <div class="trigger-warning-buttons">
-        <button onclick="continueReading()">Continue</button>
-        <button onclick="goBack()">Home</button>
+  <section class="welcome-section">
+    <!-- Existing welcome section -->
+  </section>
+
+  <main>
+    <!-- Trigger Warning Section -->
+    <section class="trigger-warning-section">
+      <div class="warning-emoji" id="warningEmoji">⚠️</div>
+      <div class="trigger-warning-box">
+        <p><strong>Trigger Warning:</strong> Some of the poems may contain sensitive topics related to mental health, heartbreak, and identity.</p>
       </div>
+    </section>
+
+    <!-- Original chronological poem list -->
+    <div class="poem-list">
+      <!-- Existing poem list code -->
     </div>
+
+    <!-- THEME LISTS (auto-populated) -->
+    <section class="theme-lists">
+      <!-- Existing theme lists code -->
+    </section>
+  </main>
+
+  <footer>
+    <!-- Existing footer content -->
+  </footer>
+
+  <!-- FLOATING BUBBLE: triggers Tally popup -->
+  <div class="floating-bubble" onclick="openTallyPopup()">💌</div>
+
+  <!-- KEY CONTAINER (PANEL + TAB) -->
+  <div id="keyContainer" class="key-container">
+    <!-- Existing key container code -->
   </div>
 
-  <!-- Poem Content -->
-  <div id="poemContent">
-    <div class="poem-container">
-      <h1 class="poem-title">[Poem Title]</h1>
-      <p class="poem-date">Published on [Date]</p>
-      <div class="poem-body">
-        Line 1 <br>
-        Line 2 <br>
-        Line 3 <br>
-        <br>
-        Line 4 <br>
-        Line 5 <br>
-        Line 6 <br>
-      </div>
-
-      <div class="author-section">
-        <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Author Headshot">
-        <span class="author-name">Jayden C</span>
-      </div>
-    </div>
-    <footer>
-      <p>Verses From a Self-Doubting Enby</p>
-    </footer>
-  </div>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+  <!-- Existing scripts -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GGL45VKHJ3');
-  </script>
-  <!-- End Google Analytics -->
-
-  <!-- Trigger Warning Logic -->
-  <script>
-    // Hides the overlay and un-blurs the poem content
-    function continueReading() {
-      document.getElementById("triggerWarningOverlay").style.display = "none";
-      document.getElementById("poemContent").style.filter = "none";
-      document.getElementById("poemContent").style.webkitFilter = "none";
+    function openTallyPopup() {
+      // Opens your Tally form in a popup by ID
+      Tally.openPopup('wMva4E');
     }
 
-    // Navigates back to your home page
-    function goBack() {
-      window.location.href = "index.html";
+    document.addEventListener("DOMContentLoaded", function() {
+      // Existing DOMContentLoaded code
+    });
+
+    // Slide the Key panel in/out
+    function toggleKeyPanel() {
+      const container = document.getElementById('keyContainer');
+      container.classList.toggle('show');
     }
+
+    // Add the Trigger Warning Dismiss Functionality
+    document.getElementById('warningEmoji').addEventListener('click', function() {
+      const triggerWarning = document.querySelector('.trigger-warning-section');
+      if (triggerWarning) {
+        triggerWarning.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
