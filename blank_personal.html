@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Personal Poetry Page</title>
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Personal Poetry Page" />
+  <meta property="og:description" content="💌 A poem sent to you from Jayden" />
+  <meta property="og:image" content="https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp" />
+  <meta property="og:url" content="[YOUR_PAGE_URL]" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Personal Poetry Page" />
+  <meta name="twitter:description" content="💌 A poem sent to you from Jayden" />
+  <meta name="twitter:image" content="https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp" />
+
   <style>
     @font-face {
       font-family: 'LemonTuesday';
@@ -27,7 +41,6 @@
       align-items: center;
     }
 
-    /* Home button */
     .home-button {
       position: absolute;
       top: 10px;
@@ -40,10 +53,9 @@
       font-size: 1rem;
       font-weight: bold;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      z-index: 5; /* ensure it's on top of blurred content */
+      z-index: 5;
     }
 
-    /* Container for the poem content (initially blurred) */
     #poemContent {
       filter: blur(6px);
       transition: filter 0.4s ease-in-out;
@@ -56,7 +68,6 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Poem layout & style */
     .poem-title {
       font-family: 'LemonTuesday', cursive;
       font-size: 2.5rem;
@@ -123,7 +134,6 @@
       }
     }
 
-    /* Personal Message Overlay as a Folding Card */
     .personal-message-overlay {
       position: fixed;
       top: 0; 
@@ -170,6 +180,17 @@
 
     .card-front {
       background-color: #f8f8f8;
+      flex-direction: column;
+    }
+
+    .card-front .from-text {
+      font-family: 'LemonTuesday', cursive;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 20px;
+      text-align: center;
+      width: 100%;
+      color: #2C2C2C;
     }
 
     .card-back {
@@ -178,7 +199,7 @@
       flex-direction: column;
       padding: 1rem;
       box-sizing: border-box;
-      text-align: center;
+      text-align: left; /* Left justified */
     }
 
     .personal-message-title {
@@ -190,7 +211,6 @@
     .personal-message-text {
       font-size: 1rem;
       color: #333;
-      margin-bottom: 2rem;
       white-space: pre-line; /* Preserves line breaks */
     }
 
@@ -213,18 +233,15 @@
 </head>
 
 <body>
-  <!-- Home button (Optional: Remove if not needed) -->
   <a href="index.html" class="home-button">Home</a>
 
-  <!-- Personal Message Overlay as a Folding Card -->
   <div class="personal-message-overlay" id="personalMessageOverlay">
     <div class="card-container">
       <div class="card" id="card">
-        <!-- Front Face of the Card -->
         <div class="card-face card-front">
+          <div class="from-text">From Jayden</div>
           💌
         </div>
-        <!-- Back Face of the Card -->
         <div class="card-face card-back">
           <h2 class="personal-message-title">To [Name]</h2>
           <p class="personal-message-text">
@@ -240,7 +257,6 @@
     </div>
   </div>
 
-  <!-- Poem Content -->
   <div id="poemContent">
     <div class="poem-container">
       <h1 class="poem-title">[Poem Title]</h1>
@@ -254,7 +270,6 @@
         Line 5 <br>
         Line 6 <br>
       </div>
-
       <div class="author-section">
         <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Author Headshot">
         <span class="author-name">Jayden C</span>
@@ -265,24 +280,11 @@
     </footer>
   </div>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGL45VKHJ3"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GGL45VKHJ3');
-  </script>
-  <!-- End Google Analytics -->
-
-  <!-- Personal Message Logic -->
-  <script>
-    // Function to handle card flip
     document.getElementById('card').addEventListener('click', function() {
       this.classList.toggle('flipped');
     });
 
-    // Function to proceed to reading the poem
     function continueReading() {
       document.getElementById("personalMessageOverlay").style.display = "none";
       document.getElementById("poemContent").style.filter = "none";
