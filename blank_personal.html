@@ -33,7 +33,6 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -56,11 +55,11 @@
     }
 
     #poemContent {
-      width: 90%;
-      max-width: 1200px;
+      width: 85%; /* Wider, but not to the edges */
+      max-width: 1000px; /* Prevents it from becoming too wide on large screens */
       margin: 0 auto;
-      padding: 3rem 4rem;
-      background-color: rgba(255, 255, 255, 0.85);
+      padding: 2.5rem; /* Adds inner spacing */
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -118,7 +117,7 @@
 
     @media (max-width: 767px) {
       #poemContent {
-        width: 95%;
+        width: 90%; /* Narrower on smaller screens */
         padding: 1.5rem;
       }
 
@@ -130,7 +129,6 @@
         font-size: 1rem;
       }
     }
-
   </style>
 </head>
 
