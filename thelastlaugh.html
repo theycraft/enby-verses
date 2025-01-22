@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Last Laugh</title>
+  <style>
+    @font-face {
+      font-family: 'LemonTuesday';
+      src: url('./LemonTuesday.otf') format('opentype');
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #000;
+      background-image: url('https://i.postimg.cc/nr4K0H5y/verses-from-a-self-doubting-enby-banner.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Button linking to home page */
+    .home-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #2C2C2C;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 5; /* ensure it's on top of blurred content */
+    }
+
+    /* Container for the poem content (initially blurred) */
+    #poemContent {
+      filter: blur(6px);
+      transition: filter 0.4s ease-in-out;
+      -webkit-filter: blur(6px);
+    }
+
+    /* Poem layout & style */
+    .poem-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .poem-title {
+      font-family: 'LemonTuesday', cursive;
+      font-size: 2.5rem;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+
+    .poem-date {
+      font-size: 1rem;
+      text-align: left;
+      margin-bottom: 2rem;
+      color: #444;
+    }
+
+    .poem-body {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: left;
+      color: #2C2C2C;
+      margin-bottom: 2rem;
+    }
+
+    .author-section {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      gap: 0.5rem;
+    }
+
+    .author-section img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      object-fit: cover;
+    }
+
+    .author-section .author-name {
+      font-size: 1rem;
+      color: #2C2C2C;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #2C2C2C;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 767px) {
+      .poem-container {
+        padding: 1rem;
+        margin: 1rem;
+      }
+
+      .poem-title {
+        font-size: 2rem;
+      }
+
+      .poem-body {
+        font-size: 1rem;
+      }
+    }
+
+    /* Trigger Warning Overlay */
+    .trigger-warning-overlay {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .trigger-warning-content {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .trigger-warning-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .trigger-warning-text {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .trigger-warning-buttons button {
+      margin: 0 1rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      background-color: #2C2C2C;
+      transition: background-color 0.2s;
+    }
+
+    .trigger-warning-buttons button:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Home button -->
+  <a href="index.html" class="home-button">Home</a>
+
+  <!-- Trigger Warning Overlay -->
+  <div class="trigger-warning-overlay" id="triggerWarningOverlay">
+    <div class="trigger-warning-content">
+      <h2 class="trigger-warning-title">⚠️<br>Trigger Warning</h2>
+      <!-- Update this text to describe specific trigger(s) -->
+      <p class="trigger-warning-text">
+        This poem contains themes ofsuicide which may be distressing to some readers.
+        Please proceed with caution.
+      </p>
+      <div class="trigger-warning-buttons">
+        <button onclick="continueReading()">Continue</button>
+        <button onclick="goBack()">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poem Content -->
+  <div id="poemContent">
+    <div class="poem-container">
+      <h1 class="poem-title">The Last Laugh</h1>
+      <p class="poem-date">Published on 22nd January 2025]</p>
+      <div class="poem-body">
+
+
+     
+It comes not in the grey of sorrow,<br>
+but in the gold of the day well-spent.<br>
+The hum of glasses clinking,<br>
+laughter strung between us like garlands.<br>
+A night so full it feels endless,<br>
+but I know it ends.<br><br>
+
+They think the darkness comes<br>
+when the world caves in,<br>
+when tears swell and throats close.<br>
+But no<br>
+It can be in the bloom of happiness,<br>
+when my chest is a vessel brimming with light.<br><br>
+
+It whispers:<br>
+“This is it.<br>
+This is as good as it gets.”<br>
+And the thought slices through the warmth<br>
+like cold steel.<br>
+
+It’s not despair, but the fear of the turn,<br>
+the moment the applause dies.<br>
+The grin falters.<br>
+The emptiness unfurls again.<br>
+What if they see the other side,<br>
+the cracks I’ve painted over?<br><br>
+
+And in that fear, a fragile logic:<br>
+Go now, while they remember you<br>
+as bright and whole.<br>
+Go now, before they see<br>
+you are neither.<br><br>
+
+But somewhere in the din of that thought,<br>
+a thread of defiance flickers,<br>
+the voice that knows tomorrow brings<br>
+another laugh,<br>
+another sunrise.<br><br>
+
+Yet still, the pull is there,<br>
+not a scream,<br>
+but a quiet hum beneath the joy,<br>
+a reminder that even in the light,<br>
+shadows form.<br><br>
+    
+
+  </div>
+
+      <div class="author-section">
+        <img src="https://i.postimg.cc/BnL8WGS9/IMG-6145.jpg" alt="Author Headshot">
+        <span class="author-name">Jayden C</span>
+      </div>
+    </div>
+    <footer>
+      <p>Verses From a Self-Doubting Enby</p>
+    </footer>
+  </div>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGL45VKHJ3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGL45VKHJ3');
+  </script>
+  <!-- End Google Analytics -->
+
+  <!-- Trigger Warning Logic -->
+  <script>
+    // Hides the overlay and un-blurs the poem content
+    function continueReading() {
+      document.getElementById("triggerWarningOverlay").style.display = "none";
+      document.getElementById("poemContent").style.filter = "none";
+      document.getElementById("poemContent").style.webkitFilter = "none";
+    }
+
+    // Navigates back to your home page
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
+
