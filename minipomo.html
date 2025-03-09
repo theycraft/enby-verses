@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Pomodoro Timer</title>
+  <style>
+    /* ====== Basic Page Setup (scaled down) ====== */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      font-size: 14px; /* Make the default font smaller */
+    }
+
+    .container {
+      background: #fff;
+      padding: 15px 20px; /* Reduced padding */
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 300px; /* Narrower container */
+      width: 90%;
+    }
+
+    /* ====== Settings Form (smaller) ====== */
+    .settings {
+      display: flex;
+      flex-direction: column;
+      gap: 8px; /* Smaller vertical spacing */
+      margin-bottom: 15px; /* Reduced margin */
+    }
+    .settings label {
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .settings input {
+      width: 60px; /* Smaller input width */
+      padding: 3px;
+      margin-left: 10px;
+      font-size: 0.9rem;
+    }
+    .settings button {
+      padding: 6px 12px; /* Smaller button size */
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 8px;
+    }
+    .settings button:hover {
+      background: #0056b3;
+    }
+
+    /* ====== Timer Display ====== */
+    .timer-label {
+      font-size: 1rem; /* Smaller label font */
+      color: #333;
+      margin-top: 10px;
+    }
+    .timer-display {
+      font-size: 2rem; /* Smaller timer digits */
+      margin: 10px 0;
+    }
+
+    /* ====== Controls (smaller) ====== */
+    .controls {
+      display: flex;
+      gap: 6px; /* Smaller gap */
+      justify-content: center;
+      margin-bottom: 10px; /* Reduced margin */
+    }
+    .controls button {
+      padding: 6px 12px; /* Smaller button size */
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    .controls button:hover {
+      background: #0056b3;
+    }
+
+    /* ====== Pomodoro Count ====== */
+    .pomodoros-completed {
+      font-size: 0.9rem; /* Slightly smaller text */
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* ====== Next Session Button (hidden by default, scaled down) ====== */
+    #nextSessionBtnContainer {
+      margin-top: 10px;
+      display: none;
+    }
+    #nextSessionBtn {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    #nextSessionBtn:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ====== Settings Form ====== -->
+    <div class="settings">
+      <label>
+        Work Duration (minutes):
+        <input type="number" id="workDurationInput" value="25" min="1">
+      </label>
+      <label>
+        Short Break (minutes):
+        <input type="number" id="shortBreakInput" value="5" min="1">
+      </label>
+      <label>
+        Long Break (minutes):
+        <input type="number" id="longBreakInput" value="15" min="1">
+      </label>
+      <label>
+        Pomodoros before Long Break:
+        <input type="number" id="pomosBeforeLongInput" value="4" min="1">
+      </label>
+      <button id="saveSettingsBtn">Save &amp; Reset</button>
+    </div>
+
+    <!-- ====== Timer Display ====== -->
+    <div class="timer-label" id="sessionLabel">Work Session</div>
+    <div class="timer-display" id="timerDisplay">25:00</div>
+
+    <!-- ====== Timer Controls ====== -->
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <!-- ====== Pomodoro Count ====== -->
+    <div class="pomodoros-completed">
+      Completed Pomodoros: <span id="pomodorosCount">0</span>
+    </div>
+
+    <!-- ====== Next Session Confirmation ====== -->
+    <div id="nextSessionBtnContainer">
+      <button id="nextSessionBtn">Start Next Session</button>
+    </div>
+  </div>
+
+  <script>
+    // =========== Default Durations (in minutes) ===========
+    let workDurationMinutes = 25;
+    let shortBreakMinutes = 5;
+    let longBreakMinutes = 15;
+    let pomodorosBeforeLong = 4;
+
+    // =========== Converted to Seconds ===========
+    let workDuration = workDurationMinutes * 60;
+    let shortBreakDuration = shortBreakMinutes * 60;
+    let longBreakDuration = longBreakMinutes * 60;
+
+    // =========== DOM Elements ===========
+    const sessionLabel = document.getElementById("sessionLabel");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const pomodorosCountElem = document.getElementById("pomodorosCount");
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const saveSettingsBtn = document.getElementById("saveSettingsBtn");
+    const nextSessionBtnContainer = document.getElementById("nextSessionBtnContainer");
+    const nextSessionBtn = document.getElementById("nextSessionBtn");
+
+    // Settings inputs
+    const workDurationInput = document.getElementById("workDurationInput");
+    const shortBreakInput = document.getElementById("shortBreakInput");
+    const longBreakInput = document.getElementById("longBreakInput");
+    const pomosBeforeLongInput = document.getElementById("pomosBeforeLongInput");
+
+    // =========== State Variables ===========
+    let currentTime = workDuration;   // Start with work session
+    let timerInterval = null;
+    let isRunning = false;
+    let sessionType = "Work";         // "Work", "ShortBreak", or "LongBreak"
+    let pomodorosCompleted = 0;
+    let alarmInterval = null;         // For repeating beep
+
+    // =========== Helper Functions ===========
+    // Format time as MM:SS
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+    }
+
+    // Update the timer display
+    function updateDisplay() {
+      timerDisplay.textContent = formatTime(currentTime);
+    }
+
+    // Play a beep using the Web Audio API
+    function playBeep() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.value = 440; // 440Hz tone (A4)
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        // Ramp down the volume quickly over 0.5 seconds
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        oscillator.stop(audioCtx.currentTime + 0.5);
+      } catch (e) {
+        console.error("Web Audio API not supported in this browser", e);
+      }
+    }
+
+    // Transition to the next session and start repeating the beep
+    function endSession() {
+      // Update session state
+      if (sessionType === "Work") {
+        pomodorosCompleted++;
+        pomodorosCountElem.textContent = pomodorosCompleted;
+
+        if (pomodorosCompleted % pomodorosBeforeLong === 0) {
+          sessionType = "LongBreak";
+          sessionLabel.textContent = "Long Break";
+          currentTime = longBreakDuration;
+        } else {
+          sessionType = "ShortBreak";
+          sessionLabel.textContent = "Short Break";
+          currentTime = shortBreakDuration;
+        }
+      } else {
+        sessionType = "Work";
+        sessionLabel.textContent = "Work Session";
+        currentTime = workDuration;
+      }
+      updateDisplay();
+
+      // Start repeating the beep until the user clicks to continue
+      playBeep();
+      alarmInterval = setInterval(playBeep, 2000);
+
+      // Show the "Start Next Session" button
+      nextSessionBtnContainer.style.display = "block";
+    }
+
+    // =========== Timer Controls ===========
+    function startTimer() {
+      if (!isRunning) {
+        isRunning = true;
+        timerInterval = setInterval(() => {
+          currentTime--;
+          if (currentTime <= 0) {
+            clearInterval(timerInterval);
+            isRunning = false;
+            endSession();
+          } else {
+            updateDisplay();
+          }
+        }, 1000);
+      }
+    }
+
+    function pauseTimer() {
+      if (isRunning) {
+        clearInterval(timerInterval);
+        isRunning = false;
+      }
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      sessionType = "Work";
+      sessionLabel.textContent = "Work Session";
+      currentTime = workDuration;
+      updateDisplay();
+      // Hide the next session button and stop any alarm beeps
+      nextSessionBtnContainer.style.display = "none";
+      if (alarmInterval) {
+        clearInterval(alarmInterval);
+        alarmInterval = null;
+      }
+    }
+
+    // =========== Settings Update ===========
+    function saveSettings() {
+      pauseTimer();
+
+      workDurationMinutes = parseInt(workDurationInput.value, 10) || 25;
+      shortBreakMinutes = parseInt(shortBreakInput.value, 10) || 5;
+      longBreakMinutes = parseInt(longBreakInput.value, 10) || 15;
+      pomodorosBeforeLong = parseInt(pomosBeforeLongInput.value, 10) || 4;
+
+      workDuration = workDurationMinutes * 60;
+      shortBreakDuration = shortBreakMinutes * 60;
+      longBreakDuration = longBreakMinutes * 60;
+
+      pomodorosCompleted = 0;
+      pomodorosCountElem.textContent = pomodorosCompleted;
+      resetTimer();
+    }
+
+    // =========== Event Listeners ===========
+    startBtn.addEventListener("click", startTimer);
+    pauseBtn.addEventListener("click", pauseTimer);
+    resetBtn.addEventListener("click", resetTimer);
+    saveSettingsBtn.addEventListener("click", saveSettings);
+
+    // When the "Start Next Session" button is clicked, stop the alarm and begin the next session
+    nextSessionBtn.addEventListener("click", () => {
+      if (alarmInterval) {
+        clearInterval(alarmInterval);
+        alarmInterval = null;
+      }
+      nextSessionBtnContainer.style.display = "none";
+      startTimer();
+    });
+
+    // Initialize display on load
+    updateDisplay();
+  </script>
+</body>
+</html>
