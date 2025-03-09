@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flip Countdown</title>
+  <style>
+    /* ====== Basic Page Setup ====== */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ====== Countdown Wrapper ====== */
+    .countdown-wrapper {
+      display: inline-flex;
+      align-items: center;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      gap: 15px;
+    }
+
+    /* Separator (colon) styling */
+    .separator {
+      font-size: 2.5rem;
+      color: #333;
+      margin: 0 5px;
+    }
+
+    /* ====== Each H/M/S group ====== */
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* ====== Flip Card Container ====== */
+    .flip-container {
+      position: relative;
+      width: 60px;
+      height: 80px;
+      perspective: 1000px;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+    /* Each half of the flip card */
+    .card-face {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      font-size: 2rem;
+      line-height: 40px; /* half of total card height */
+      font-weight: bold;
+      color: #333;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backface-visibility: hidden;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .top {
+      top: 0;
+      border-bottom: none;
+      transform-origin: center bottom;
+    }
+    .bottom {
+      bottom: 0;
+      transform-origin: center top;
+      transform: rotateX(90deg);
+    }
+
+    /* ====== Flip Animations ====== */
+    .flip-container.flip .top {
+      animation: flipTop 0.5s forwards;
+    }
+    .flip-container.flip .bottom {
+      animation: flipBottom 0.5s forwards;
+    }
+    @keyframes flipTop {
+      0%   { transform: rotateX(0deg); }
+      100% { transform: rotateX(-90deg); }
+    }
+    @keyframes flipBottom {
+      0%   { transform: rotateX(90deg); }
+      100% { transform: rotateX(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Countdown Container -->
+  <div class="countdown-wrapper">
+    <!-- Hours -->
+    <div class="countdown-item">
+      <div class="flip-container" id="hoursFlip">
+        <div class="card-face top">00</div>
+        <div class="card-face bottom">00</div>
+      </div>
+      <div class="label">Hours</div>
+    </div>
+
+    <div class="separator">:</div>
+
+    <!-- Minutes -->
+    <div class="countdown-item">
+      <div class="flip-container" id="minutesFlip">
+        <div class="card-face top">00</div>
+        <div class="card-face bottom">00</div>
+      </div>
+      <div class="label">Minutes</div>
+    </div>
+
+    <div class="separator">:</div>
+
+    <!-- Seconds -->
+    <div class="countdown-item">
+      <div class="flip-container" id="secondsFlip">
+        <div class="card-face top">00</div>
+        <div class="card-face bottom">00</div>
+      </div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <script>
+    // Target date/time: March 9, 2025 at 23:55
+    const deadline = new Date("Mar 9, 2025 23:55:00").getTime();
+
+    const hoursFlip   = document.getElementById("hoursFlip");
+    const minutesFlip = document.getElementById("minutesFlip");
+    const secondsFlip = document.getElementById("secondsFlip");
+
+    /**
+     * Flips a given "flip-container" to display newVal.
+     * Expects the container to have .top and .bottom elements.
+     */
+    function flip(flipContainer, newVal) {
+      const top    = flipContainer.querySelector(".top");
+      const bottom = flipContainer.querySelector(".bottom");
+      const currentVal = top.textContent;
+
+      // If the value hasn't changed, no flip needed
+      if (newVal === currentVal) return;
+
+      // Temporarily keep the old value in top
+      top.textContent = currentVal;
+      // Place the new value in bottom
+      bottom.textContent = newVal;
+
+      // Trigger the flip animation
+      flipContainer.classList.remove("flip");
+      void flipContainer.offsetWidth; // reflow to restart animation
+      flipContainer.classList.add("flip");
+
+      // After half the animation, update top to the new value
+      setTimeout(() => {
+        top.textContent = newVal;
+      }, 250);
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = deadline - now;
+
+      if (distance <= 0) {
+        // Past deadline, show all zeros
+        flip(hoursFlip, "00");
+        flip(minutesFlip, "00");
+        flip(secondsFlip, "00");
+        return;
+      }
+
+      // Calculate H, M, S
+      let totalSeconds = Math.floor(distance / 1000);
+      const hrs = Math.floor(totalSeconds / 3600);
+      totalSeconds %= 3600;
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+
+      // Format as two digits
+      const hrsString = String(hrs).padStart(2, "0");
+      const minsString = String(mins).padStart(2, "0");
+      const secsString = String(secs).padStart(2, "0");
+
+      // Flip each section if needed
+      flip(hoursFlip, hrsString);
+      flip(minutesFlip, minsString);
+      flip(secondsFlip, secsString);
+    }
+
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Run once at load
+  </script>
+</body>
+</html>
