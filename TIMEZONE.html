@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Time</title>
+</head>
+<body>
+  <h1>Upcoming Event</h1>
+  <p id="eventTime"></p>
+
+  <script>
+    // Define the event time in UTC.
+    // Note: 7PM UK time on 5th March 2025 is equivalent to 2025-03-05T19:00:00Z in early March.
+    const eventUTC = new Date("2025-03-05T19:00:00Z");
+    
+    // Convert event time to a string formatted in the user's local timezone
+    const localEventTime = eventUTC.toLocaleString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
+    
+    // Display the converted time on the page
+    document.getElementById('eventTime').textContent = `Event Time: ${localEventTime}`;
+  </script>
+</body>
+</html>
