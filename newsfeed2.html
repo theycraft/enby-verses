@@ -2,54 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LGBTQ Nation - Latest (No Broken Images)</title>
+  <title>LGBTQ Nation - Latest (Colorful)</title>
   <style>
+    /* BODY + GLOBAL STYLES */
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 1.5rem;
-      max-width: 700px;
+      margin: 0;
+      padding: 2rem;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      /* A gentle gradient background */
+      background: linear-gradient(135deg, #FDEBFF 0%, #CFF4FF 100%);
+      color: #333;
+      max-width: 800px;
       margin: auto;
     }
+
+    /* PAGE TITLE */
     h1 {
-      font-size: 1.5rem;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      color: #5E366A;
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.7);
     }
+
+    /* FEED ITEM CONTAINER */
     .feed-item {
-      background: #fff;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      margin-bottom: 0.75rem;
+      background: #FFFFFFEE; /* slight transparency to let the gradient shine through */
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+      position: relative;
     }
+
+    /* A bright accent border on the left */
+    .feed-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+      background: linear-gradient(180deg, #FF6B8A 0%, #FFA36B 100%);
+    }
+
+    /* TITLE */
     .title {
+      margin: 0 0 0.3rem;
       font-weight: bold;
       font-size: 1rem;
-      margin: 0;
+      color: #4B2966;
     }
     .title a {
       text-decoration: none;
-      color: #333;
+      color: inherit;
     }
     .title a:hover {
       text-decoration: underline;
     }
+
+    /* DATE */
     .pub-date {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: #888;
-      margin-top: 0.2rem;
+      margin-bottom: 0.5rem;
     }
+
+    /* DESCRIPTION */
     .description {
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 0.25rem;
-    }
-    .thumbnail {
-      float: left;
-      margin-right: 0.75rem;
-      max-width: 80px;
-      border-radius: 6px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #444;
     }
   </style>
 </head>
@@ -71,33 +96,18 @@
         const feedItem = document.createElement('div');
         feedItem.className = 'feed-item';
 
-        // Clean up the description text
-        const textOnlyDescription = item.description.replace(/<[^>]+>/g, '').slice(0, 120) + '...';
+        // Strip HTML tags from the description and shorten it
+        const cleanDescription = item.description.replace(/<[^>]+>/g, '');
+        const shortDesc = cleanDescription.length > 120
+          ? cleanDescription.slice(0, 120) + '...'
+          : cleanDescription;
 
-        // If rss2json provides a direct thumbnail field:
-        //   const thumbnailUrl = item.thumbnail;
-        // But if it’s not there, or always missing, we can skip the <img> altogether.
-
-        // Example: We parse the first <img> in the description
-        // (LGBTQ Nation typically doesn't embed direct "thumbnail" but might embed an <img>):
-        const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-        const thumbnailUrl = imgMatch ? imgMatch[1] : '';
-
-        // Build the HTML
-        let html = '';
-        
-        // Only show an <img> if we actually have a thumbnailUrl
-        if (thumbnailUrl) {
-          html += `<img class="thumbnail" src="${thumbnailUrl}" alt="Article Image">`;
-        }
-
-        html += `
+        feedItem.innerHTML = `
           <p class="title"><a href="${item.link}" target="_blank">${item.title}</a></p>
           <div class="pub-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-          <div class="description">${textOnlyDescription}</div>
+          <div class="description">${shortDesc}</div>
         `;
 
-        feedItem.innerHTML = html;
         container.appendChild(feedItem);
       });
     })
