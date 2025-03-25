@@ -74,6 +74,11 @@
     const rssUrl = 'https://www.lgbtqnation.com/feed/';
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
+    function extractImage(html) {
+      const match = html.match(/<img[^>]+src="([^">]+)"/i);
+      return match ? match[1] : null;
+    }
+
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -83,14 +88,16 @@
           const div = document.createElement('div');
           div.className = 'feed-item';
 
-          const thumbnail = item.thumbnail || 'https://via.placeholder.com/60?text=No+Image';
+          const imageFromDescription = extractImage(item.description);
+          const imageUrl = imageFromDescription || 'https://via.placeholder.com/60?text=No+Image';
+          const textOnlyDescription = item.description.replace(/<[^>]+>/g, '').slice(0, 100);
 
           div.innerHTML = `
-            <img src="${thumbnail}" alt="Thumbnail">
+            <img src="${imageUrl}" alt="Thumbnail">
             <div class="feed-content">
               <a href="${item.link}" target="_blank">${item.title}</a>
               <div class="pub-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-              <div class="description">${item.description.replace(/<[^>]+>/g, '').slice(0, 100)}...</div>
+              <div class="description">${textOnlyDescription}...</div>
             </div>
           `;
 
