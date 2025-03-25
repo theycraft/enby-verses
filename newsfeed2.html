@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LGBTQ Nation - Latest</title>
+  <title>LGBTQ Nation - Latest (No Broken Images)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,13 +11,11 @@
       max-width: 700px;
       margin: auto;
     }
-
     h1 {
       font-size: 1.5rem;
       text-align: center;
       margin-bottom: 1rem;
     }
-
     .feed-item {
       background: #fff;
       padding: 0.75rem 1rem;
@@ -25,69 +23,89 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       margin-bottom: 0.75rem;
     }
-
-    .feed-content {
-      font-size: 0.9rem;
-    }
-
-    .feed-content a {
+    .title {
       font-weight: bold;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .title a {
       text-decoration: none;
       color: #333;
     }
-
-    .feed-content a:hover {
+    .title a:hover {
       text-decoration: underline;
     }
-
     .pub-date {
       font-size: 0.75rem;
       color: #888;
       margin-top: 0.2rem;
     }
-
     .description {
       font-size: 0.85rem;
       color: #555;
       margin-top: 0.25rem;
     }
+    .thumbnail {
+      float: left;
+      margin-right: 0.75rem;
+      max-width: 80px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Latest from <em>LGBTQ Nation</em></h1>
-  <div id="feed"></div>
+<h1>Latest from <em>LGBTQ Nation</em></h1>
+<div id="feed"></div>
 
-  <script>
-    const rssUrl = 'https://www.lgbtqnation.com/feed/';
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+<script>
+  const rssUrl = 'https://www.lgbtqnation.com/feed/';
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('feed');
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('feed');
 
-        data.items.slice(0, 10).forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'feed-item';
+      data.items.slice(0, 10).forEach(item => {
+        const feedItem = document.createElement('div');
+        feedItem.className = 'feed-item';
 
-          const textOnlyDescription = item.description.replace(/<[^>]+>/g, '').slice(0, 100);
+        // Clean up the description text
+        const textOnlyDescription = item.description.replace(/<[^>]+>/g, '').slice(0, 120) + '...';
 
-          div.innerHTML = `
-            <div class="feed-content">
-              <a href="${item.link}" target="_blank">${item.title}</a>
-              <div class="pub-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-              <div class="description">${textOnlyDescription}...</div>
-            </div>
-          `;
+        // If rss2json provides a direct thumbnail field:
+        //   const thumbnailUrl = item.thumbnail;
+        // But if it’s not there, or always missing, we can skip the <img> altogether.
 
-          container.appendChild(div);
-        });
-      })
-      .catch(err => {
-        document.getElementById('feed').innerText = 'Failed to load feed.';
-        console.error(err);
+        // Example: We parse the first <img> in the description
+        // (LGBTQ Nation typically doesn't embed direct "thumbnail" but might embed an <img>):
+        const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+        const thumbnailUrl = imgMatch ? imgMatch[1] : '';
+
+        // Build the HTML
+        let html = '';
+        
+        // Only show an <img> if we actually have a thumbnailUrl
+        if (thumbnailUrl) {
+          html += `<img class="thumbnail" src="${thumbnailUrl}" alt="Article Image">`;
+        }
+
+        html += `
+          <p class="title"><a href="${item.link}" target="_blank">${item.title}</a></p>
+          <div class="pub-date">${new Date(item.pubDate).toLocaleDateString()}</div>
+          <div class="description">${textOnlyDescription}</div>
+        `;
+
+        feedItem.innerHTML = html;
+        container.appendChild(feedItem);
       });
-  </script>
+    })
+    .catch(err => {
+      document.getElementById('feed').innerText = 'Failed to load feed.';
+      console.error(err);
+    });
+</script>
+
 </body>
 </html>
