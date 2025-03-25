@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autoplaying Slideshow</title>
+  <!-- Flickity CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css">
+  <style>
+    .carousel-cell {
+      width: 100%; /* Adjust width as needed */
+      margin-right: 10px;
+    }
+    .carousel-cell img {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slideshow Markup -->
+  <div class="carousel" data-flickity='{ "autoPlay": 3000, "wrapAround": true }'>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/MMWv3fYK/01.jpg" alt="Slide 1">
+    </div>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/6yDTJmhP/Diane-Speaking-AWIS-2014.jpg" alt="Slide 2">
+    </div>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/9zscrqqR/Diane-Speaking-Ms-JD-Leadership-Academy-Intensive-November-2024.jpg" alt="Slide 3">
+    </div>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/9zgr1MwC/Diane-Speaking-2.png" alt="Slide 4">
+    </div>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/tn4nJn1m/East-Coast-Rigging-Scaffolding-January-2025.jpg" alt="Slide 5">
+    </div>
+    <div class="carousel-cell">
+      <img src="https://i.postimg.cc/G94cLj9n/JA-9331.jpg" alt="Slide 6">
+    </div>
+  </div>
+
+  <!-- Flickity JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js"></script>
+</body>
+</html>
