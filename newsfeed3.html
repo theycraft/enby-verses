@@ -79,10 +79,10 @@
     const rssUrl = 'https://www.thepinknews.com/feed/';
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-    // This function finds the FIRST <img src="..."> in the HTML string
+    // Helper function: find the FIRST <img src="..."> in the HTML string
     function extractFirstImage(html) {
       const match = html.match(/<img[^>]+src="([^">]+)"/);
-      return match ? match[1] : ''; // Return the image URL or empty string
+      return match ? match[1] : '';
     }
 
     fetch(apiUrl)
@@ -102,9 +102,9 @@
             thumbnailUrl = extractFirstImage(item.description);
           }
 
-          // 3) If still empty, use a placeholder
+          // 3) If still empty, use the site favicon
           if (!thumbnailUrl) {
-            thumbnailUrl = 'https://via.placeholder.com/60?text=No+Image';
+            thumbnailUrl = 'https://www.thepinknews.com/favicon.ico';
           }
 
           // Clean up the description text (remove HTML tags)
