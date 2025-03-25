@@ -75,8 +75,14 @@
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
     function extractImage(html) {
-      const match = html.match(/<img[^>]+src="([^">]+)"/i);
-      return match ? match[1] : null;
+      const match = html.match(/<img[^>]+src="([^">]+)"/);
+      return match ? match[1] : 'https://via.placeholder.com/60?text=No+Image';
+    }
+
+    function stripHTML(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      return div.textContent || div.innerText || '';
     }
 
     fetch(apiUrl)
@@ -88,16 +94,15 @@
           const div = document.createElement('div');
           div.className = 'feed-item';
 
-          const imageFromDescription = extractImage(item.description);
-          const imageUrl = imageFromDescription || 'https://via.placeholder.com/60?text=No+Image';
-          const textOnlyDescription = item.description.replace(/<[^>]+>/g, '').slice(0, 100);
+          const thumbnail = extractImage(item.description);
+          const cleanText = stripHTML(item.description).slice(0, 100) + '...';
 
           div.innerHTML = `
-            <img src="${imageUrl}" alt="Thumbnail">
+            <img src="${thumbnail}" alt="Thumbnail">
             <div class="feed-content">
               <a href="${item.link}" target="_blank">${item.title}</a>
               <div class="pub-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-              <div class="description">${textOnlyDescription}...</div>
+              <div class="description">${cleanText}</div>
             </div>
           `;
 
