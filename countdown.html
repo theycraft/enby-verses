@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Widget</title>
+  <style>
+    /* Basic styling for the countdown widget */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown"></div>
+
+  <script>
+    // Set the target date/time: April 6, 2025 23:55:00
+    var targetDate = new Date("April 6, 2025 23:55:00").getTime();
+
+    // Update the countdown every 1 second
+    var timer = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = targetDate - now;
+      
+      // Calculate days, hours, minutes, and seconds remaining
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the countdown
+      document.getElementById("countdown").innerHTML = 
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      // If the countdown is finished, display a message
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
